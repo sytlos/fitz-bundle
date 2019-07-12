@@ -1,0 +1,22 @@
+{
+  "name": "hugosoltys/fitz-bundle",
+  "type": "symfony-bundle",
+  "description": "FitzBundle",
+  "keywords": ["Symfony", "User", "API", "Admin"],
+  "homepage": "https://github.com/hugosoltys/fitz-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Hugo Soltys",
+      "email": "hugo.soltys@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "symfony/framework-bundle": "4.3.*",
+    "symfony/templating": "4.3.*"
+  },
+  "autoload": {
+    "psr-4": { "HugoSoltys\\FitzBundle\\": "" }
+  }
+}
