@@ -2,3 +2,7 @@
 /composer.lock
 /phpunit.xml
 /.phpunit/
+index.php
+Kernel.php
+/config/
+/var/

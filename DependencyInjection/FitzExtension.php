@@ -13,6 +13,5 @@ class FitzExtension extends Extension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('controllers.xml');
-        $loader->load('routing.xml');
     }
 }
