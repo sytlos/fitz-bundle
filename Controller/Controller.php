@@ -27,7 +27,9 @@ class Controller extends AbstractController
                     throw new \Exception(\sprintf("Installer for bundle %s was not found.", $bundle));
                 }
 
-                $installer->install();
+                if (!$installer->isInstalled()) {
+                    $installer->install();
+                }
             }
 
             return $this->redirectToRoute('hugo_soltys_fitz_installed');

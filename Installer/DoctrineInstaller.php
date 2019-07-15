@@ -11,13 +11,25 @@ class DoctrineInstaller implements InstallerInterface
     /** @var string */
     private $composerPath;
 
-    public function __construct($composerPath)
+    /** @var array */
+    private $bundles;
+
+    public function __construct($composerPath, $bundles)
     {
         $this->composerPath = $composerPath;
+        $this->bundles = $bundles;
     }
 
     public function install()
     {
+        if (!\file_exists($this->composerPath)) {
+            throw new \Exception(\sprintf("Composer not found at path : %s", $this->composerPath));
+        }
+
+        if (!\is_executable($this->composerPath)) {
+            throw new \Exception(\sprintf("The %s file is not executable", $this->composerPath));
+        }
+
         $bundleInfo = AvailableBundles::BUNDLES['DoctrineBundle'];
 
         $package = $bundleInfo['composer'];
@@ -28,5 +40,10 @@ class DoctrineInstaller implements InstallerInterface
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
+    }
+
+    public function isInstalled()
+    {
+        return \array_key_exists('DoctrineBundle', \array_keys($this->bundles));
     }
 }

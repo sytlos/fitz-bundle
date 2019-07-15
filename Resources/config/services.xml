@@ -6,6 +6,7 @@
     <services>
         <service id="fitz.doctrine_installer" class="HugoSoltys\FitzBundle\Installer\DoctrineInstaller" public="true">
             <argument>%fitz.composer_path%</argument>
+            <argument>%kernel.bundles%</argument>
         </service>
     </services>
 </container>
