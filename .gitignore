@@ -6,3 +6,4 @@ index.php
 Kernel.php
 /config/
 /var/
+.env
