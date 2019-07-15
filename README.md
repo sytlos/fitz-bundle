@@ -14,7 +14,7 @@ Configuration
 =
 Import the bundle routing
 ```yaml
-# config/routes.yaml
+# config/routes/dev/fitz.yaml
 fitz:
   resource: "@FitzBundle/Resources/config/routing.xml"
 ```
