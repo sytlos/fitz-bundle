@@ -9,3 +9,4 @@ Kernel.php
 .env
 /src/
 /bin/
+/templates/

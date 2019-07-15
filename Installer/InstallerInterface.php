@@ -7,4 +7,8 @@ interface InstallerInterface
     public function install();
 
     public function isInstalled();
+
+    public function configure();
+
+    public function cacheClear();
 }

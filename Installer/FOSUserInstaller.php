@@ -6,7 +6,7 @@ use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class DoctrineInstaller implements InstallerInterface
+class FOSUserInstaller implements InstallerInterface
 {
     /** @var string */
     private $composerPath;
@@ -34,7 +34,7 @@ class DoctrineInstaller implements InstallerInterface
             throw new \Exception(\sprintf("The %s file is not executable", $this->composerPath));
         }
 
-        $bundleInfo = AvailableBundles::BUNDLES['DoctrineBundle'];
+        $bundleInfo = AvailableBundles::BUNDLES['FOSUserBundle'];
 
         $packages = $bundleInfo['composer'];
         $command = \array_merge([$this->composerPath, 'require'], $packages);
@@ -56,7 +56,7 @@ class DoctrineInstaller implements InstallerInterface
 
     public function isInstalled()
     {
-        return \array_key_exists('DoctrineBundle', \array_keys($this->bundles));
+        return \array_key_exists('FOSUserBundle', \array_keys($this->bundles));
     }
 
     public function cacheClear()
