@@ -7,3 +7,5 @@ Kernel.php
 /config/
 /var/
 .env
+/src/
+/bin/

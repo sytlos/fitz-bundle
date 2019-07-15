@@ -32,17 +32,12 @@ class Controller extends AbstractController
                 }
             }
 
-            return $this->redirectToRoute('hugo_soltys_fitz_installed');
+            return $this->redirectToRoute('hugo_soltys_fitz_install');
         }
 
         return $this->render('index.html.twig', [
             'installedBundles' => \array_keys($this->bundles),
             'availableBundles' => AvailableBundles::BUNDLES,
         ]);
-    }
-
-    public function installed()
-    {
-
     }
 }

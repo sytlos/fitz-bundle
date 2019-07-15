@@ -32,9 +32,10 @@ class DoctrineInstaller implements InstallerInterface
 
         $bundleInfo = AvailableBundles::BUNDLES['DoctrineBundle'];
 
-        $package = $bundleInfo['composer'];
+        $packages = $bundleInfo['composer'];
+        $command = \array_merge([$this->composerPath, 'require'], $packages);
 
-        $process = new Process([$this->composerPath, 'require', $package]);
+        $process = new Process($command);
         $process->run();
 
         if (!$process->isSuccessful()) {

@@ -7,8 +7,4 @@
     <route id="hugo_soltys_fitz_install" path="/fitz/install" methods="GET,POST">
         <default key="_controller">fitz.controller::install</default>
     </route>
-
-    <route id="hugo_soltys_fitz_installed" path="/fitz/installed" methods="GET,POST">
-        <default key="_controller">fitz.controller::installed</default>
-    </route>
 </routes>

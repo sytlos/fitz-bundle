@@ -11,14 +11,19 @@
             {% for bundle, infos in availableBundles %}
                 <div class="col">
                     <label for="{{ bundle }}">
-                        <input type="checkbox" name="{{ bundle }}" id="{{ bundle }}" value="{{ bundle }}">
+                        <input type="checkbox" name="{{ bundle }}" id="{{ bundle }}" value="{{ bundle }}" {% if bundle in installedBundles %}checked disabled{% endif %}>
                         {{ bundle }}
                     </label>
                     <small class="doclink">
                         <a href="{{ infos.documentation }}" target="_blank">
-                            See the documentation
+                            Read the documentation
                         </a>
                     </small>
+                    {% if bundle in installedBundles %}
+                        <p class="installed">
+                            ✓ installed
+                        </p>
+                    {% endif %}
                 </div>
                 {% if loop.index == 3 %}
                     <div class="clear"></div>
