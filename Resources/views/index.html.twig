@@ -7,52 +7,34 @@
 
     <div id="next">
         <h2>Pick the bundles you need in your application</h2>
-        <form method="post" action="{{ path('hugo_soltys_fitz_index') }}" name="bundles">
-            <div class="col">
-                <label for="doctrine/doctrine-bundle">
-                    <input type="checkbox" name="doctrine/doctrine-bundle" id="doctrine/doctrine-bundle">
-                    Doctrine Bundle
-                </label>
-                <small class="doclink">
-                    <a href="https://symfony.com/doc/current/bundles/DoctrineBundle/index.html" target="_blank">
-                        See the documentation
-                    </a>
-                </small>
-            </div>
-            <div class="col">
-                <label for="api">
-                    <input type="checkbox" name="api" id="api">
-                    API Platform
-                </label>
-                <small class="doclink">
-                    <a href="https://api-platform.com/docs/" target="_blank">
-                        See the documentation
-                    </a>
-                </small>
-            </div>
-            <div class="col">
-                <label for="friendsofsymfony/user-bundle">
-                    <input type="checkbox" name="friendsofsymfony/user-bundle" id="friendsofsymfony/user-bundle">
-                    FOSUserBundle
-                </label>
-                <small class="doclink">
-                    <a href="https://symfony.com/doc/master/bundles/FOSUserBundle/index.html" target="_blank">
-                        See the documentation
-                    </a>
-                </small>
-            </div>
-            <div class="clear"></div>
-            <div class="col">
-                <label for="admin">
-                    <input type="checkbox" name="admin" id="admin">
-                    EasyAdminBundle
-                </label>
-                <small class="doclink">
-                    <a href="https://symfony.com/doc/master/bundles/EasyAdminBundle/index.html" target="_blank">
-                        See the documentation
-                    </a>
-                </small>
-            </div>
+        <form method="post" action="{{ path('hugo_soltys_fitz_install') }}" name="bundles">
+            {% for bundle, infos in availableBundles %}
+                <div class="col">
+                    <label for="{{ bundle }}">
+                        <input type="checkbox" name="{{ bundle }}" id="{{ bundle }}" value="{{ bundle }}">
+                        {{ bundle }}
+                    </label>
+                    <small class="doclink">
+                        <a href="{{ infos.documentation }}" target="_blank">
+                            See the documentation
+                        </a>
+                    </small>
+                </div>
+                {% if loop.index == 3 %}
+                    <div class="clear"></div>
+                {% endif %}
+            {% endfor %}
+            {#<div class="col">#}
+                {#<label for="api">#}
+                    {#<input type="checkbox" name="api" id="api">#}
+                    {#API Platform#}
+                {#</label>#}
+                {#<small class="doclink">#}
+                    {#<a href="https://api-platform.com/docs/" target="_blank">#}
+                        {#See the documentation#}
+                    {#</a>#}
+                {#</small>#}
+            {#</div>#}
             <div class="clear"></div>
             <input type="submit" value="Install">
         </form>

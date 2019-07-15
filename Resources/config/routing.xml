@@ -4,7 +4,11 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="hugo_soltys_fitz_index" path="/fitz/index" methods="GET,POST">
-        <default key="_controller">fitz.controller::index</default>
+    <route id="hugo_soltys_fitz_install" path="/fitz/install" methods="GET,POST">
+        <default key="_controller">fitz.controller::install</default>
+    </route>
+
+    <route id="hugo_soltys_fitz_installed" path="/fitz/installed" methods="GET,POST">
+        <default key="_controller">fitz.controller::installed</default>
     </route>
 </routes>

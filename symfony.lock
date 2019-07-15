@@ -10,5 +10,8 @@
         "files": [
             ".env"
         ]
+    },
+    "symfony/process": {
+        "version": "v4.3.2"
     }
 }
