@@ -4,6 +4,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="fitz.doctrine_installer" class="HugoSoltys\FitzBundle\Installer\DoctrineInstaller" public="true"/>
+        <service id="fitz.doctrine_installer" class="HugoSoltys\FitzBundle\Installer\DoctrineInstaller" public="true">
+            <argument>%fitz.composer_path%</argument>
+        </service>
     </services>
 </container>
