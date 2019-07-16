@@ -1,0 +1,7 @@
+fos_user:
+  db_driver: 'orm'
+  user_class: 'FOS\UserBundle\Model\User'
+  firewall_name: 'main'
+  from_email:
+    address:        '__SENDER_EMAIL__'
+    sender_name:    '__SENDER_NAME__'

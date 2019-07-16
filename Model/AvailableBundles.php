@@ -11,7 +11,7 @@ class AvailableBundles
             'service' => 'fitz.doctrine_installer',
         ],
         'FOSUserBundle' => [
-            'composer' => ['friendsofsymfony/user-bundle'],
+            'composer' => ['friendsofsymfony/user-bundle', 'swiftmailer-bundle', 'symfony/translation'],
             'documentation' => 'https://symfony.com/doc/master/bundles/FOSUserBundle/index.html',
             'service' => 'fitz.fos_user_installer',
         ],

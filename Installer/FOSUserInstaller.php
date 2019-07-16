@@ -46,12 +46,18 @@ class FOSUserInstaller implements InstallerInterface
             throw new ProcessFailedException($process);
         }
 
+        $this->configure();
         $this->cacheClear();
     }
 
     public function configure()
     {
-        return;
+        $configFile = \sprintf('%s/config/packages/fos_user.yaml', $this->projectDir);
+
+        if (!\file_exists($configFile)) {
+            $defaultConfigFile = \sprintf('%s/../Resources/default_config/fos_user.yaml', __DIR__);
+            \copy($defaultConfigFile, $configFile);
+        }
     }
 
     public function isInstalled()

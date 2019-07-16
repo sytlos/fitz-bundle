@@ -18,3 +18,10 @@ Import the bundle routing
 fitz:
   resource: "@FitzBundle/Resources/config/routing.xml"
 ```
+
+Configuring the bundle
+```yaml
+# config/packages/dev/fitz.yaml
+fitz:
+  composer_path: '/path/to/composer'
+```
