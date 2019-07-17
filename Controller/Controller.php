@@ -26,18 +26,16 @@ class Controller extends AbstractController
                 if (!$installer instanceof InstallerInterface) {
                     throw new \Exception(\sprintf("Installer for bundle %s was not found.", $bundle));
                 }
-
-                if (!$installer->isInstalled()) {
-                    $installer->install();
+                if (!$installer->isQueued()) {
+                    $installer->queue();
                 }
             }
-
-            return $this->redirectToRoute('hugo_soltys_fitz_install');
         }
 
         return $this->render('index.html.twig', [
             'installedBundles' => \array_keys($this->bundles),
             'availableBundles' => AvailableBundles::BUNDLES,
+            'installing' => \explode(';', \file_get_contents(AvailableBundles::QUEUE_FILE)),
         ]);
     }
 }

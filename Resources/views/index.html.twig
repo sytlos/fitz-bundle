@@ -7,11 +7,17 @@
 
     <div id="next">
         <h2>Pick the bundles you need in your application</h2>
+        <p>
+            After clicking the Install button, please run the following command in your terminal.
+        </p>
+        <p>
+            <code>bin/console fitz:install</code>
+        </p>
         <form method="post" action="{{ path('hugo_soltys_fitz_install') }}" name="bundles">
             {% for bundle, infos in availableBundles %}
                 <div class="col">
                     <label for="{{ bundle }}">
-                        <input type="checkbox" name="{{ bundle }}" id="{{ bundle }}" value="{{ bundle }}" {% if bundle in installedBundles %}checked disabled{% endif %}>
+                        <input type="checkbox" name="{{ bundle }}" id="{{ bundle }}" value="{{ bundle }}" {% if bundle in installedBundles or bundle in installing %}checked disabled{% endif %}>
                         {{ bundle }}
                     </label>
                     <small class="doclink">
@@ -21,7 +27,12 @@
                     </small>
                     {% if bundle in installedBundles %}
                         <p class="installed">
-                            ✓ installed
+                            ✅ installed
+                        </p>
+                    {% endif %}
+                    {% if bundle in installing %}
+                        <p class="installing">
+                            👍 ready to install ...
                         </p>
                     {% endif %}
                 </div>

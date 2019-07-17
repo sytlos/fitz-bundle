@@ -17,6 +17,8 @@ class DoctrineInstaller implements InstallerInterface
     /** @var string */
     private $projectDir;
 
+    const BUNDLE_NAME = 'DoctrineBundle';
+
     public function __construct($composerPath, $bundles, $projectDir)
     {
         $this->composerPath = $composerPath;
@@ -34,7 +36,7 @@ class DoctrineInstaller implements InstallerInterface
             throw new \Exception(\sprintf("The %s file is not executable", $this->composerPath));
         }
 
-        $bundleInfo = AvailableBundles::BUNDLES['DoctrineBundle'];
+        $bundleInfo = AvailableBundles::BUNDLES[self::BUNDLE_NAME];
 
         $packages = $bundleInfo['composer'];
         $command = \array_merge([$this->composerPath, 'require'], $packages);
@@ -47,6 +49,7 @@ class DoctrineInstaller implements InstallerInterface
         }
 
         $this->cacheClear();
+        $this->unqueue();
     }
 
     public function configure()
@@ -56,7 +59,24 @@ class DoctrineInstaller implements InstallerInterface
 
     public function isInstalled()
     {
-        return \array_key_exists('DoctrineBundle', \array_keys($this->bundles));
+        return \array_key_exists(self::BUNDLE_NAME, \array_keys($this->bundles));
+    }
+
+    public function isQueued()
+    {
+        return \file_exists(AvailableBundles::QUEUE_FILE) && \strpos(\file_get_contents(AvailableBundles::QUEUE_FILE), self::BUNDLE_NAME) !== false;
+    }
+
+    public function queue()
+    {
+        \file_put_contents(AvailableBundles::QUEUE_FILE, \sprintf('%s;', self::BUNDLE_NAME), FILE_APPEND | LOCK_EX);
+    }
+
+    public function unqueue()
+    {
+        $content = \file_get_contents(AvailableBundles::QUEUE_FILE);
+        $content = \str_replace(\sprintf('%s;', self::BUNDLE_NAME), '', $content);
+        \file_put_contents(AvailableBundles::QUEUE_FILE, $content);
     }
 
     public function cacheClear()

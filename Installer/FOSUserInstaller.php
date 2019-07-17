@@ -17,6 +17,8 @@ class FOSUserInstaller implements InstallerInterface
     /** @var string */
     private $projectDir;
 
+    const BUNDLE_NAME = 'FOSUserBundle';
+
     public function __construct($composerPath, $bundles, $projectDir)
     {
         $this->composerPath = $composerPath;
@@ -34,7 +36,7 @@ class FOSUserInstaller implements InstallerInterface
             throw new \Exception(\sprintf("The %s file is not executable", $this->composerPath));
         }
 
-        $bundleInfo = AvailableBundles::BUNDLES['FOSUserBundle'];
+        $bundleInfo = AvailableBundles::BUNDLES[self::BUNDLE_NAME];
 
         $packages = $bundleInfo['composer'];
         $command = \array_merge([$this->composerPath, 'require'], $packages);
@@ -48,6 +50,7 @@ class FOSUserInstaller implements InstallerInterface
 
         $this->configure();
         $this->cacheClear();
+        $this->unqueue();
     }
 
     public function configure()
@@ -62,7 +65,7 @@ class FOSUserInstaller implements InstallerInterface
 
     public function isInstalled()
     {
-        return \array_key_exists('FOSUserBundle', \array_keys($this->bundles));
+        return \array_key_exists(self::BUNDLE_NAME, \array_keys($this->bundles));
     }
 
     public function cacheClear()
@@ -74,5 +77,22 @@ class FOSUserInstaller implements InstallerInterface
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
+    }
+
+    public function isQueued()
+    {
+        return \file_exists(AvailableBundles::QUEUE_FILE) && \strpos(\file_get_contents(AvailableBundles::QUEUE_FILE), self::BUNDLE_NAME) !== false;
+    }
+
+    public function queue()
+    {
+        \file_put_contents(AvailableBundles::QUEUE_FILE, \sprintf('%s;', self::BUNDLE_NAME), FILE_APPEND | LOCK_EX);
+    }
+
+    public function unqueue()
+    {
+        $content = \file_get_contents(AvailableBundles::QUEUE_FILE);
+        $content = \str_replace(\sprintf('%s;', self::BUNDLE_NAME), '', $content);
+        \file_put_contents(AvailableBundles::QUEUE_FILE, $content);
     }
 }
