@@ -25,3 +25,10 @@ Configuring the bundle
 fitz:
   composer_path: '/path/to/composer'
 ```
+
+Usage
+=
+Go to this page `http://localhost/fitz/install`
+
+- Choose the bundles you want to install then press the button.
+- Open a terminal and run the following command `bin/console fitz:install`  
