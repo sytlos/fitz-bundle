@@ -30,7 +30,7 @@
                             ✅ installed
                         </p>
                     {% endif %}
-                    {% if bundle in installing %}
+                    {% if bundle in installing and bundle not in installedBundles %}
                         <p class="installing">
                             👍 ready to install ...
                         </p>

@@ -21,6 +21,14 @@ class InstallBundlesCommand extends Command
     /** @var string */
     private $projectDir;
 
+    public function __construct(?string $name = null, $composerPath, $bundles, $projectDir)
+    {
+        parent::__construct($name);
+        $this->composerPath = $composerPath;
+        $this->bundles = $bundles;
+        $this->projectDir = $projectDir;
+    }
+
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $bundles = \explode(';', \file_get_contents(AvailableBundles::QUEUE_FILE));
