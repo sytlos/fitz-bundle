@@ -41,15 +41,18 @@ class InstallBundlesCommand extends Command
             if (empty($bundle)) {
                 continue;
             }
-            $io->section(\sprintf('Now installing %s', $bundle));
 
             $installerClass = AvailableBundles::BUNDLES[$bundle]['installer_class'];
             /** @var InstallerInterface $installer */
             $installer = new $installerClass($this->composerPath, $this->bundles, $this->projectDir);
 
-            $installer->install();
+            if (!$installer->isInstalled()) {
+                $io->section(\sprintf('Now installing %s', $bundle));
 
-            $io->success(\sprintf('%s installed successfully', $bundle));
+                $installer->install();
+
+                $io->success(\sprintf('%s installed successfully', $bundle));
+            }
         }
 
         $io->success('All bundles are now installed. Enjoy !');

@@ -29,4 +29,13 @@ class AvailableBundles
 //            'installer_class' => EasyAd::class,
         ],
     ];
+
+    public static function installingBundles()
+    {
+        if (!\file_exists(self::QUEUE_FILE)) {
+            return [];
+        }
+
+        return \explode(';', \file_get_contents(self::QUEUE_FILE));
+    }
 }

@@ -35,7 +35,7 @@ class Controller extends AbstractController
         return $this->render('index.html.twig', [
             'installedBundles' => \array_keys($this->bundles),
             'availableBundles' => AvailableBundles::BUNDLES,
-            'installing' => \explode(';', \file_get_contents(AvailableBundles::QUEUE_FILE)),
+            'installing' => AvailableBundles::installingBundles(),
         ]);
     }
 }
