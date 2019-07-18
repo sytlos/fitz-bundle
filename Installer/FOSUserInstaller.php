@@ -50,7 +50,6 @@ class FOSUserInstaller implements InstallerInterface
         }
 
         $this->configure();
-        $this->cacheClear();
         $this->unqueue();
     }
 
@@ -73,17 +72,6 @@ class FOSUserInstaller implements InstallerInterface
     public function isInstalled()
     {
         return \array_key_exists(self::BUNDLE_NAME, \array_keys($this->bundles));
-    }
-
-    public function cacheClear()
-    {
-        $console = \sprintf('%s/bin/console', $this->projectDir);
-        $process = new Process([$console, 'cache:clear']);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
     }
 
     public function isQueued()

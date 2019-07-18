@@ -77,15 +77,4 @@ class DoctrineInstaller implements InstallerInterface
     {
         FileHelper::remove(AvailableBundles::QUEUE_FILE, \sprintf('%s;', self::BUNDLE_NAME));
     }
-
-    public function cacheClear()
-    {
-        $console = \sprintf('%s/bin/console', $this->projectDir);
-        $process = new Process([$console, 'cache:clear']);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-    }
 }

@@ -30,6 +30,8 @@ class Controller extends AbstractController
                     $installer->queue();
                 }
             }
+
+            return $this->redirectToRoute('hugo_soltys_fitz_install');
         }
 
         return $this->render('index.html.twig', [
