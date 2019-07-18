@@ -32,6 +32,8 @@ class InstallBundlesCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
+        ini_set('memory_limit', -1);
+
         $io = new SymfonyStyle($input, $output);
         $io->title('FitzBundle install command');
 

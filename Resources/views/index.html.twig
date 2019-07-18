@@ -20,6 +20,9 @@
                         <input type="checkbox" name="{{ bundle }}" id="{{ bundle }}" value="{{ bundle }}" {% if bundle in installedBundles or bundle in installing %}checked disabled{% endif %}>
                         {{ bundle }}
                     </label>
+                    <small class="composername">
+                        {{ infos.composer_name }}
+                    </small>
                     <small class="doclink">
                         <a href="{{ infos.documentation }}" target="_blank">
                             Read the documentation
@@ -27,12 +30,15 @@
                     </small>
                     {% if bundle in installedBundles %}
                         <p class="installed">
-                            ✅ installed
+                            ✅ Installed
                         </p>
-                    {% endif %}
-                    {% if bundle in installing and bundle not in installedBundles %}
+                    {% elseif bundle in installing and bundle not in installedBundles %}
                         <p class="installing">
-                            👍 ready to install ...
+                            👍 Ready to install ...
+                        </p>
+                    {% else %}
+                        <p class="ready">
+                            Check to install
                         </p>
                     {% endif %}
                 </div>
