@@ -20,7 +20,12 @@
     "symfony/flex": "^1.4",
     "symfony/process": "4.3.*",
     "symfony/console": "4.3.*",
-    "symfony/dotenv": "4.3.*"
+    "symfony/dotenv": "4.3.*",
+    "doctrine/doctrine-bundle": "^1.11",
+    "doctrine/orm": "^2.6",
+    "friendsofsymfony/user-bundle": "^2.1",
+    "symfony/swiftmailer-bundle": "^3.2",
+    "symfony/translation": "4.3.*"
   },
   "autoload": {
     "psr-4": { "HugoSoltys\\FitzBundle\\": "" }

@@ -7,7 +7,7 @@ Installation
 =
 Open a terminal and type
 ```bash
-$ composer require hugosoltys/fitz-bundle
+$ composer require --dev hugosoltys/fitz-bundle
 ```
 
 Configuration
