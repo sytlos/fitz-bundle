@@ -7,7 +7,7 @@ use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class DoctrineInstaller implements InstallerInterface
+class EasyAdminInstaller implements InstallerInterface
 {
     /** @var string */
     private $composerPath;
@@ -18,7 +18,7 @@ class DoctrineInstaller implements InstallerInterface
     /** @var string */
     private $projectDir;
 
-    const BUNDLE_NAME = 'DoctrineBundle';
+    const BUNDLE_NAME = 'EasyAdminBundle';
 
     public function __construct($composerPath, $bundles, $projectDir)
     {

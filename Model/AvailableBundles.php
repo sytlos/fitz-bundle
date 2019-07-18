@@ -3,6 +3,7 @@
 namespace HugoSoltys\FitzBundle\Model;
 
 use HugoSoltys\FitzBundle\Installer\DoctrineInstaller;
+use HugoSoltys\FitzBundle\Installer\EasyAdminInstaller;
 use HugoSoltys\FitzBundle\Installer\FOSUserInstaller;
 
 class AvailableBundles
@@ -26,7 +27,7 @@ class AvailableBundles
             'composer' => ['admin'],
             'documentation' => 'https://symfony.com/doc/master/bundles/EasyAdminBundle/index.html',
             'service' => 'fitz.easy_admin_installer',
-//            'installer_class' => EasyAd::class,
+            'installer_class' => EasyAdminInstaller::class,
         ],
     ];
 
