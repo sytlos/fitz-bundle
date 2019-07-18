@@ -2,8 +2,7 @@
 
 namespace HugoSoltys\FitzBundle\Model;
 
-use HugoSoltys\FitzBundle\Installer\DoctrineInstaller;
-use HugoSoltys\FitzBundle\Installer\EasyAdminInstaller;
+use HugoSoltys\FitzBundle\Installer\DefaultInstaller;
 use HugoSoltys\FitzBundle\Installer\FOSUserInstaller;
 
 class AvailableBundles
@@ -14,8 +13,8 @@ class AvailableBundles
         'DoctrineBundle' => [
             'composer' => ['doctrine/doctrine-bundle', 'doctrine/orm'],
             'documentation' => 'https://symfony.com/doc/current/bundles/DoctrineBundle/index.html',
-            'service' => 'fitz.doctrine_installer',
-            'installer_class' => DoctrineInstaller::class,
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
         ],
         'FOSUserBundle' => [
             'composer' => ['friendsofsymfony/user-bundle', 'swiftmailer-bundle', 'symfony/translation'],
@@ -26,9 +25,15 @@ class AvailableBundles
         'EasyAdminBundle' => [
             'composer' => ['admin'],
             'documentation' => 'https://symfony.com/doc/master/bundles/EasyAdminBundle/index.html',
-            'service' => 'fitz.easy_admin_installer',
-            'installer_class' => EasyAdminInstaller::class,
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
         ],
+        'ApiPlatformBundle' => [
+            'composer' => ['api-platform/api-pack'],
+            'documentation' => 'https://api-platform.com/docs/',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+        ]
     ];
 
     public static function installingBundles()

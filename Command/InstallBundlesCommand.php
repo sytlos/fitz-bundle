@@ -45,6 +45,7 @@ class InstallBundlesCommand extends Command
             $installerClass = AvailableBundles::BUNDLES[$bundle]['installer_class'];
             /** @var InstallerInterface $installer */
             $installer = new $installerClass($this->composerPath, $this->bundles, $this->projectDir);
+            $installer->setBundleName($bundle);
 
             if (!$installer->isInstalled()) {
                 $io->section(\sprintf('Now installing %s', $bundle));

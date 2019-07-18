@@ -7,7 +7,7 @@ use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class DoctrineInstaller implements InstallerInterface
+class DefaultInstaller implements InstallerInterface
 {
     /** @var string */
     private $composerPath;
@@ -18,7 +18,8 @@ class DoctrineInstaller implements InstallerInterface
     /** @var string */
     private $projectDir;
 
-    const BUNDLE_NAME = 'DoctrineBundle';
+    /** @var string */
+    private $bundleName;
 
     public function __construct($composerPath, $bundles, $projectDir)
     {
@@ -37,7 +38,7 @@ class DoctrineInstaller implements InstallerInterface
             throw new \Exception(\sprintf("The %s file is not executable", $this->composerPath));
         }
 
-        $bundleInfo = AvailableBundles::BUNDLES[self::BUNDLE_NAME];
+        $bundleInfo = AvailableBundles::BUNDLES[$this->getBundleName()];
 
         $packages = $bundleInfo['composer'];
         $command = \array_merge([$this->composerPath, 'require'], $packages);
@@ -59,21 +60,31 @@ class DoctrineInstaller implements InstallerInterface
 
     public function isInstalled()
     {
-        return \array_key_exists(self::BUNDLE_NAME, \array_keys($this->bundles));
+        return \array_key_exists($this->getBundleName(), \array_keys($this->bundles));
     }
 
     public function isQueued()
     {
-        return \file_exists(AvailableBundles::QUEUE_FILE) && FileHelper::contains(AvailableBundles::QUEUE_FILE, self::BUNDLE_NAME);
+        return \file_exists(AvailableBundles::QUEUE_FILE) && FileHelper::contains(AvailableBundles::QUEUE_FILE, $this->getBundleName());
     }
 
     public function queue()
     {
-        FileHelper::append(AvailableBundles::QUEUE_FILE, \sprintf('%s;', self::BUNDLE_NAME));
+        FileHelper::append(AvailableBundles::QUEUE_FILE, \sprintf('%s;', $this->getBundleName()));
     }
 
     public function unqueue()
     {
-        FileHelper::remove(AvailableBundles::QUEUE_FILE, \sprintf('%s;', self::BUNDLE_NAME));
+        FileHelper::remove(AvailableBundles::QUEUE_FILE, \sprintf('%s;', $this->getBundleName()));
+    }
+
+    public function getBundleName(): ?string
+    {
+        return $this->bundleName;
+    }
+
+    public function setBundleName(string $bundleName): void
+    {
+        $this->bundleName = $bundleName;
     }
 }

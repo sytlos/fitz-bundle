@@ -26,6 +26,7 @@ class Controller extends AbstractController
                 if (!$installer instanceof InstallerInterface) {
                     throw new \Exception(\sprintf("Installer for bundle %s was not found.", $bundle));
                 }
+                $installer->setBundleName($bundle);
                 if (!$installer->isQueued()) {
                     $installer->queue();
                 }

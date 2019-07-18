@@ -15,4 +15,8 @@ interface InstallerInterface
     public function queue();
 
     public function unqueue();
+
+    public function getBundleName();
+
+    public function setBundleName(string $bundleName);
 }
