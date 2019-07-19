@@ -28,7 +28,6 @@ class Controller extends AbstractController
             $bundles = $request->request->all();
             unset($bundles['search']);
             foreach ($bundles as $bundle) {
-                var_dump($bundle);
                 $installer = $this->get(AvailableBundles::BUNDLES[$bundle]['service']);
                 if (!$installer instanceof InstallerInterface) {
                     throw new \Exception(\sprintf("Installer for bundle %s was not found.", $bundle));
@@ -45,7 +44,7 @@ class Controller extends AbstractController
         return $this->render('@Fitz/index.html.twig', [
             'installedBundles' => \array_keys($this->bundles),
             'availableBundles' => AvailableBundles::BUNDLES,
-            'installing' => FileHelper::getContent(\sprintf('%s/%s', $this->projectDir, AvailableBundles::QUEUE_FILE)),
+            'installing' => FileHelper::getContent(\sprintf('%s/vendor/hugosoltys/fitz-bundle/%s', $this->projectDir, AvailableBundles::QUEUE_FILE)),
         ]);
     }
 }

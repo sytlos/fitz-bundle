@@ -102,6 +102,6 @@ class FOSUserInstaller implements InstallerInterface
 
     public function getQueueFilepath()
     {
-        return \sprintf('%s/%s', $this->projectDir, AvailableBundles::QUEUE_FILE);
+        return \sprintf('%s/vendor/hugosoltys/fitz-bundle/%s', $this->projectDir, AvailableBundles::QUEUE_FILE);
     }
 }
