@@ -37,15 +37,13 @@ class AvailableBundles
             'service' => 'fitz.default_installer',
             'installer_class' => DefaultInstaller::class,
             'composer_name' => 'api-platform/api-pack',
-        ]
+        ],
+        'FOSJsRoutingBundle' => [
+            'composer' => ['friendsofsymfony/jsrouting-bundle'],
+            'documentation' => 'https://symfony.com/doc/master/bundles/FOSJsRoutingBundle/index.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'friendsofsymfony/jsrouting-bundle',
+        ],
     ];
-
-    public static function installingBundles()
-    {
-        if (!\file_exists(self::QUEUE_FILE)) {
-            return [];
-        }
-
-        return \explode(';', \file_get_contents(self::QUEUE_FILE));
-    }
 }

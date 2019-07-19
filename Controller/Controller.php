@@ -2,6 +2,7 @@
 
 namespace HugoSoltys\FitzBundle\Controller;
 
+use HugoSoltys\FitzBundle\Helper\FileHelper;
 use HugoSoltys\FitzBundle\Installer\InstallerInterface;
 use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,9 +13,13 @@ class Controller extends AbstractController
     /** @var array */
     private $bundles;
 
-    public function __construct(array $bundles)
+    /** @var string */
+    private $projectDir;
+
+    public function __construct(array $bundles, string $projectDir)
     {
         $this->bundles = $bundles;
+        $this->projectDir = $projectDir;
     }
 
     public function install(Request $request)
@@ -38,7 +43,7 @@ class Controller extends AbstractController
         return $this->render('index.html.twig', [
             'installedBundles' => \array_keys($this->bundles),
             'availableBundles' => AvailableBundles::BUNDLES,
-            'installing' => AvailableBundles::installingBundles(),
+            'installing' => FileHelper::getContent(\sprintf('%s/%s', $this->projectDir, AvailableBundles::QUEUE_FILE)),
         ]);
     }
 }
