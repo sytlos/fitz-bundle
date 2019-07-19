@@ -45,5 +45,12 @@ class AvailableBundles
             'installer_class' => DefaultInstaller::class,
             'composer_name' => 'friendsofsymfony/jsrouting-bundle',
         ],
+        'WhiteOctoberPagerfantaBundle' => [
+            'composer' => ['white-october/pagerfanta-bundle'],
+            'documentation' => 'https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'white-october/pagerfanta-bundle',
+        ],
     ];
 }
