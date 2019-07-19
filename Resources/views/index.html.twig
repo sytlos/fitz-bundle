@@ -22,10 +22,17 @@
             </div>
             <div class="clear"></div>
 
+            <div id="hideinput">
+                <label for="hideinstalled" class="noselect">
+                    <input type="checkbox" name=hideinstalled" id="hideinstalled">
+                    Hide installed bundles
+                </label>
+            </div>
+
             {% for bundle, infos in availableBundles %}
                 <div class="col">
-                    <label for="{{ bundle }}">
-                        <input type="checkbox" name="{{ bundle }}" id="{{ bundle }}" value="{{ bundle }}" {% if bundle in installedBundles or bundle in installing %}checked disabled{% endif %}>
+                    <label for="{{ bundle }}" class="noselect">
+                        <input type="checkbox" name="bundles[{{ bundle }}]" id="{{ bundle }}" value="{{ bundle }}" {% if bundle in installedBundles or bundle in installing %}checked disabled{% endif %}>
                         {{ bundle }}
                     </label>
                     <small class="composername">

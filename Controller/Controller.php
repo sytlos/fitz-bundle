@@ -25,20 +25,22 @@ class Controller extends AbstractController
     public function install(Request $request)
     {
         if ($request->isMethod(Request::METHOD_POST)) {
-            $bundles = $request->request->all();
-            unset($bundles['search']);
-            foreach ($bundles as $bundle) {
-                $installer = $this->get(AvailableBundles::BUNDLES[$bundle]['service']);
-                if (!$installer instanceof InstallerInterface) {
-                    throw new \Exception(\sprintf("Installer for bundle %s was not found.", $bundle));
+            $data = $request->request->all();
+            if (isset($data['bundles'])) {
+                $bundles = $data['bundles'];
+                foreach ($bundles as $bundle) {
+                    $installer = $this->get(AvailableBundles::BUNDLES[$bundle]['service']);
+                    if (!$installer instanceof InstallerInterface) {
+                        throw new \Exception(\sprintf("Installer for bundle %s was not found.", $bundle));
+                    }
+                    $installer->setBundleName($bundle);
+                    if (!$installer->isQueued()) {
+                        $installer->queue();
+                    }
                 }
-                $installer->setBundleName($bundle);
-                if (!$installer->isQueued()) {
-                    $installer->queue();
-                }
-            }
 
-            return $this->redirectToRoute('hugo_soltys_fitz_install');
+                return $this->redirectToRoute('hugo_soltys_fitz_install');
+            }
         }
 
         return $this->render('@Fitz/index.html.twig', [

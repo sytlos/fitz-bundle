@@ -37,6 +37,14 @@
             #submitform {float: left; width: 49%; text-align: right; margin-left: -5px; margin-bottom: 15px;}
             #search {padding: 5px; outline: none; width: 200px;}
             .hide {display: none;}
+            .noselect {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
 
             @media (min-width: 768px) {
                 #wrapper { width: 80%; margin: 2em auto; }
@@ -58,8 +66,10 @@
     <script>
         var search = document.getElementById('search');
         var bundles = document.querySelectorAll('.col');
+        var hideinput = document.querySelector('#hideinstalled');
 
         search.addEventListener('input', function () {
+            hideinput.checked = false;
             bundles.forEach(function (bundle) {
                 var composer = bundle.querySelector('.composername').textContent;
                 var name = bundle.querySelector('label').textContent;
@@ -68,6 +78,21 @@
                     bundle.classList.add('hide');
                 } else {
                     bundle.classList.remove('hide');
+                }
+            });
+        });
+
+        hideinput.addEventListener('change', function () {
+            bundles.forEach(function (bundle) {
+                var installed = bundle.querySelector('.installed');
+                if (hideinput.checked) {
+                    if (installed) {
+                        installed.parentElement.classList.add('hide');
+                    }
+                } else {
+                    if (installed) {
+                        installed.parentElement.classList.remove('hide');
+                    }
                 }
             });
         });
