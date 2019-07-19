@@ -42,7 +42,8 @@ class Controller extends AbstractController
             if (isset($data['bundles'])) {
                 $bundles = $data['bundles'];
                 foreach ($bundles as $bundle) {
-                    $installer = $this->get(AvailableBundles::BUNDLES[$bundle]['service']);
+                    $serviceName = isset(AvailableBundles::BUNDLES[$bundle]['service']) ? AvailableBundles::BUNDLES[$bundle]['service'] : 'fitz.default_installer';
+                    $installer = $this->get($serviceName);
                     if (!$installer instanceof InstallerInterface) {
                         throw new \Exception(\sprintf("Installer for bundle %s was not found.", $bundle));
                     }

@@ -3,6 +3,7 @@
 namespace HugoSoltys\FitzBundle\Command;
 
 use HugoSoltys\FitzBundle\Helper\FileHelper;
+use HugoSoltys\FitzBundle\Installer\DefaultInstaller;
 use HugoSoltys\FitzBundle\Installer\InstallerInterface;
 use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Component\Console\Command\Command;
@@ -60,7 +61,7 @@ class InstallBundlesCommand extends Command
                 continue;
             }
 
-            $installerClass = AvailableBundles::BUNDLES[$bundle]['installer_class'];
+            $installerClass = isset(AvailableBundles::BUNDLES[$bundle]['installer_class']) ? AvailableBundles::BUNDLES[$bundle]['installer_class'] : DefaultInstaller::class;
             /** @var InstallerInterface $installer */
             $installer = new $installerClass($this->composerPath, $this->bundles, $this->projectDir);
             $installer->setBundleName($bundle);
