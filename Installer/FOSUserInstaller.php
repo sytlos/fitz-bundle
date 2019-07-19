@@ -7,6 +7,9 @@ use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
+/**
+ * @author Hugo Soltys <hugo.soltys@gmail.com>
+ */
 class FOSUserInstaller implements InstallerInterface
 {
     /** @var string */
@@ -21,6 +24,12 @@ class FOSUserInstaller implements InstallerInterface
     /** @var string */
     private $bundleName;
 
+    /**
+     * FOSUserInstaller constructor.
+     * @param string $composerPath
+     * @param array $bundles
+     * @param string $projectDir
+     */
     public function __construct($composerPath, $bundles, $projectDir)
     {
         $this->composerPath = $composerPath;
@@ -28,6 +37,9 @@ class FOSUserInstaller implements InstallerInterface
         $this->projectDir = $projectDir;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function install()
     {
         if (!\file_exists($this->composerPath)) {
@@ -54,6 +66,9 @@ class FOSUserInstaller implements InstallerInterface
         $this->unqueue();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function configure()
     {
         $configFile = \sprintf('%s/config/packages/fos_user.yaml', $this->projectDir);
@@ -70,11 +85,18 @@ class FOSUserInstaller implements InstallerInterface
         }
     }
 
+    /**
+     * @return bool
+     */
     public function isInstalled()
     {
         return \array_key_exists($this->getBundleName(), \array_keys($this->bundles));
     }
 
+    /**
+     * @return bool
+     * @throws \Exception
+     */
     public function isQueued()
     {
         return \file_exists($this->getQueueFilepath()) && FileHelper::contains($this->getQueueFilepath(), $this->getBundleName());
@@ -90,16 +112,25 @@ class FOSUserInstaller implements InstallerInterface
         FileHelper::remove($this->getQueueFilepath(), \sprintf('%s;', $this->getBundleName()));
     }
 
+    /**
+     * @return null|string
+     */
     public function getBundleName(): ?string
     {
         return $this->bundleName;
     }
 
+    /**
+     * @param string $bundleName
+     */
     public function setBundleName(string $bundleName): void
     {
         $this->bundleName = $bundleName;
     }
 
+    /**
+     * @return string
+     */
     public function getQueueFilepath()
     {
         return \sprintf('%s/vendor/hugosoltys/fitz-bundle/%s', $this->projectDir, AvailableBundles::QUEUE_FILE);

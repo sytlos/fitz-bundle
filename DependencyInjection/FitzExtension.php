@@ -8,8 +8,16 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
+/**
+ * @author Hugo Soltys <hugo.soltys@gmail.com>
+ */
 class FitzExtension extends Extension
 {
+    /**
+     * @param array $configs
+     * @param ContainerBuilder $container
+     * @throws \Exception
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $processor = new Processor();

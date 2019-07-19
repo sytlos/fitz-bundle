@@ -8,6 +8,9 @@ use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @author Hugo Soltys <hugo.soltys@gmail.com>
+ */
 class Controller extends AbstractController
 {
     /** @var array */
@@ -16,12 +19,22 @@ class Controller extends AbstractController
     /** @var string */
     private $projectDir;
 
+    /**
+     * Controller constructor.
+     * @param array $bundles
+     * @param string $projectDir
+     */
     public function __construct(array $bundles, string $projectDir)
     {
         $this->bundles = $bundles;
         $this->projectDir = $projectDir;
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
     public function install(Request $request)
     {
         if ($request->isMethod(Request::METHOD_POST)) {

@@ -5,6 +5,9 @@ namespace HugoSoltys\FitzBundle\Model;
 use HugoSoltys\FitzBundle\Installer\DefaultInstaller;
 use HugoSoltys\FitzBundle\Installer\FOSUserInstaller;
 
+/**
+ * @author Hugo Soltys <hugo.soltys@gmail.com>
+ */
 class AvailableBundles
 {
     const QUEUE_FILE = 'bundle_queue.log';
@@ -121,6 +124,27 @@ class AvailableBundles
             'service' => 'fitz.default_installer',
             'installer_class' => DefaultInstaller::class,
             'composer_name' => 'doctrine/doctrine-migrations-bundle',
+        ],
+        'NelmioApiDocBundle' => [
+            'composer' => ['nelmio/api-doc-bundle'],
+            'documentation' => 'https://symfony.com/doc/current/bundles/NelmioApiDocBundle/index.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'nelmio/api-doc-bundle',
+        ],
+        'HautelookAliceBundle' => [
+            'composer' => ['hautelook/alice-bundle'],
+            'documentation' => 'https://github.com/hautelook/AliceBundle',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'hautelook/alice-bundle',
+        ],
+        'LexikJWTAuthenticationBundle' => [
+            'composer' => ['lexik/jwt-authentication-bundle'],
+            'documentation' => 'https://github.com/lexik/LexikJWTAuthenticationBundle',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'lexik/jwt-authentication-bundle',
         ],
     ];
 }

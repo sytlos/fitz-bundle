@@ -10,6 +10,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+/**
+ * @author Hugo Soltys <hugo.soltys@gmail.com>
+ */
 class InstallBundlesCommand extends Command
 {
     protected static $defaultName = 'fitz:install';
@@ -23,6 +26,13 @@ class InstallBundlesCommand extends Command
     /** @var string */
     private $projectDir;
 
+    /**
+     * InstallBundlesCommand constructor.
+     * @param null|string $name
+     * @param $composerPath
+     * @param $bundles
+     * @param $projectDir
+     */
     public function __construct(?string $name = null, $composerPath, $bundles, $projectDir)
     {
         parent::__construct($name);
@@ -31,6 +41,11 @@ class InstallBundlesCommand extends Command
         $this->projectDir = $projectDir;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         ini_set('memory_limit', -1);
