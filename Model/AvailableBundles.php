@@ -31,6 +31,27 @@ class AvailableBundles
             'installer_class' => DefaultInstaller::class,
             'composer_name' => 'symfony/swiftmailer-bundle',
         ],
+        'SecurityBundle' => [
+            'composer' => ['symfony/security-bundle'],
+            'documentation' => 'https://symfony.com/doc/current/reference/configuration/security.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'symfony/security-bundle',
+        ],
+        'MonologBundle' => [
+            'composer' => ['symfony/monolog-bundle'],
+            'documentation' => 'https://symfony.com/doc/current/logging.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'symfony/monolog-bundle',
+        ],
+        'MakerBundle' => [
+            'composer' => ['symfony/maker-bundle'],
+            'documentation' => 'https://symfony.com/doc/current/bundles/SymfonyMakerBundle/index.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'symfony/maker-bundle',
+        ],
         'DoctrineBundle' => [
             'composer' => ['doctrine/doctrine-bundle', 'doctrine/orm'],
             'documentation' => 'https://symfony.com/doc/current/bundles/DoctrineBundle/index.html',
@@ -79,6 +100,13 @@ class AvailableBundles
             'service' => 'fitz.default_installer',
             'installer_class' => DefaultInstaller::class,
             'composer_name' => 'knplabs/knp-menu-bundle',
+        ],
+        'StofDoctrineExtensionsBundle' => [
+            'composer' => ['stof/doctrine-extensions-bundle'],
+            'documentation' => 'https://symfony.com/doc/master/bundles/StofDoctrineExtensionsBundle/index.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'stof/doctrine-extensions-bundle',
         ],
     ];
 }

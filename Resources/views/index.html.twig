@@ -6,17 +6,22 @@
     </div>
 
     <div id="next">
-        <h2>Pick the bundles you need in your application</h2>
-        <p>
-            After clicking the Install button, please run the following command in your terminal.
-        </p>
-        <p>
-            <code>bin/console fitz:install</code>
-        </p>
-        <div id="searchform">
-            <input id="search" name="search" type="text" placeholder="Search a bundle">
-        </div>
         <form method="post" action="{{ path('hugo_soltys_fitz_install') }}" name="bundles">
+            <h2>Pick the bundles you need in your application</h2>
+            <p>
+                After clicking the Install button, please run the following command in your terminal.
+            </p>
+            <p>
+                <code>bin/console fitz:install</code>
+            </p>
+            <div id="searchform">
+                <input id="search" name="search" type="text" placeholder="Search a bundle">
+            </div>
+            <div id="submitform">
+                <input type="submit" value="Install">
+            </div>
+            <div class="clear"></div>
+
             {% for bundle, infos in availableBundles %}
                 <div class="col">
                     <label for="{{ bundle }}">
@@ -47,7 +52,6 @@
                 </div>
             {% endfor %}
             <div class="clear"></div>
-            <input type="submit" value="Install">
         </form>
     </div>
 {% endblock %}
