@@ -1,4 +1,4 @@
-Fitz Bundle
+FitzBundle
 =
 
 Browse and install all the bundles you need in your Symfony application
