@@ -13,6 +13,9 @@
         <p>
             <code>bin/console fitz:install</code>
         </p>
+        <div id="searchform">
+            <input id="search" name="search" type="text" placeholder="Search a bundle">
+        </div>
         <form method="post" action="{{ path('hugo_soltys_fitz_install') }}" name="bundles">
             {% for bundle, infos in availableBundles %}
                 <div class="col">
@@ -42,9 +45,6 @@
                         </p>
                     {% endif %}
                 </div>
-                {% if loop.index == 3 %}
-                    <div class="clear"></div>
-                {% endif %}
             {% endfor %}
             <div class="clear"></div>
             <input type="submit" value="Install">

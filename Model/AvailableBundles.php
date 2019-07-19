@@ -29,7 +29,7 @@ class AvailableBundles
             'documentation' => 'https://symfony.com/doc/master/bundles/EasyAdminBundle/index.html',
             'service' => 'fitz.default_installer',
             'installer_class' => DefaultInstaller::class,
-            'composer_name' => 'doctrine/doctrine-bundle',
+            'composer_name' => 'easycorp/easyadmin-bundle',
         ],
         'ApiPlatformBundle' => [
             'composer' => ['api-platform/api-pack'],
