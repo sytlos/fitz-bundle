@@ -52,5 +52,12 @@ class AvailableBundles
             'installer_class' => DefaultInstaller::class,
             'composer_name' => 'white-october/pagerfanta-bundle',
         ],
+        'KnpMenuBundle' => [
+            'composer' => ['knplabs/knp-menu-bundle'],
+            'documentation' => 'https://symfony.com/doc/master/bundles/KnpMenuBundle/index.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'knplabs/knp-menu-bundle',
+        ],
     ];
 }
