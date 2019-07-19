@@ -1,7 +1,7 @@
 {
   "name": "hugosoltys/fitz-bundle",
   "type": "symfony-bundle",
-  "description": "FitzBundle",
+  "description": "Browse and install all the bundles you need in your Symfony application in a few seconds.",
   "keywords": ["symfony", "install", "bundle", "fitz"],
   "homepage": "https://github.com/hugosoltys/fitz-bundle",
   "license": "MIT",
