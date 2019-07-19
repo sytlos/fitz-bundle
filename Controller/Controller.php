@@ -26,7 +26,9 @@ class Controller extends AbstractController
     {
         if ($request->isMethod(Request::METHOD_POST)) {
             $bundles = $request->request->all();
+            unset($bundles['search']);
             foreach ($bundles as $bundle) {
+                var_dump($bundle);
                 $installer = $this->get(AvailableBundles::BUNDLES[$bundle]['service']);
                 if (!$installer instanceof InstallerInterface) {
                     throw new \Exception(\sprintf("Installer for bundle %s was not found.", $bundle));

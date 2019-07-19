@@ -108,5 +108,19 @@ class AvailableBundles
             'installer_class' => DefaultInstaller::class,
             'composer_name' => 'stof/doctrine-extensions-bundle',
         ],
+        'NelmioCorsBundle' => [
+            'composer' => ['nelmio/cors-bundle'],
+            'documentation' => 'https://github.com/nelmio/NelmioCorsBundle',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'nelmio/cors-bundle',
+        ],
+        'DoctrineMigrationsBundle' => [
+            'composer' => ['doctrine/doctrine-migrations-bundle'],
+            'documentation' => 'https://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'doctrine/doctrine-migrations-bundle',
+        ],
     ];
 }
