@@ -11,6 +11,19 @@ Open a terminal and type
 $ composer require --dev hugosoltys/fitz-bundle
 ```
 
+Enabling the bundle
+= 
+Add the following line in your `bundles.php` file
+
+```php
+<?php
+
+return [
+    // ...
+    HugoSoltys\FitzBundle\FitzBundle::class => ['dev' => true],
+];
+```
+
 Configuration
 =
 Import the bundle routing
@@ -31,5 +44,5 @@ Usage
 =
 Go to this page `http://localhost/fitz/install`
 
-- Choose the bundles you want to install then press the button.
+- Choose the bundles you want to install then press the `Install` button.
 - Open a terminal and run the following command `bin/console fitz:install`  
