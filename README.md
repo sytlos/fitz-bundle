@@ -1,7 +1,8 @@
 Fitz Bundle
 =
 
-Pick what you want in your Symfony application.
+Browse and install all the bundles you need in your Symfony application
+in a few seconds.
 
 Installation
 =
