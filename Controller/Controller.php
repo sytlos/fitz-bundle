@@ -42,7 +42,7 @@ class Controller extends AbstractController
             return $this->redirectToRoute('hugo_soltys_fitz_install');
         }
 
-        return $this->render('index.html.twig', [
+        return $this->render('@FitzBundle/Resources/views/index.html.twig', [
             'installedBundles' => \array_keys($this->bundles),
             'availableBundles' => AvailableBundles::BUNDLES,
             'installing' => FileHelper::getContent(\sprintf('%s/%s', $this->projectDir, AvailableBundles::QUEUE_FILE)),
