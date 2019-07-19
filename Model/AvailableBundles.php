@@ -10,6 +10,27 @@ class AvailableBundles
     const QUEUE_FILE = 'bundle_queue.log';
 
     const BUNDLES = [
+        'WebProfilerBundle' => [
+            'composer' => ['symfony/web-profiler-bundle'],
+            'documentation' => 'https://symfony.com/doc/current/reference/configuration/web_profiler.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'symfony/web-profiler-bundle',
+        ],
+        'TwigBundle' => [
+            'composer' => ['symfony/twig-bundle'],
+            'documentation' => 'https://symfony.com/doc/current/reference/configuration/twig.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'symfony/twig-bundle',
+        ],
+        'SwiftmailerBundle' => [
+            'composer' => ['symfony/swiftmailer-bundle'],
+            'documentation' => 'https://symfony.com/doc/current/email.html',
+            'service' => 'fitz.default_installer',
+            'installer_class' => DefaultInstaller::class,
+            'composer_name' => 'symfony/swiftmailer-bundle',
+        ],
         'DoctrineBundle' => [
             'composer' => ['doctrine/doctrine-bundle', 'doctrine/orm'],
             'documentation' => 'https://symfony.com/doc/current/bundles/DoctrineBundle/index.html',

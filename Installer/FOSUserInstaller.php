@@ -77,17 +77,17 @@ class FOSUserInstaller implements InstallerInterface
 
     public function isQueued()
     {
-        return \file_exists(AvailableBundles::QUEUE_FILE) && FileHelper::contains(AvailableBundles::QUEUE_FILE, $this->getBundleName());
+        return \file_exists($this->getQueueFilepath()) && FileHelper::contains($this->getQueueFilepath(), $this->getBundleName());
     }
 
     public function queue()
     {
-        FileHelper::append(AvailableBundles::QUEUE_FILE, \sprintf('%s;', $this->getBundleName()));
+        FileHelper::append($this->getQueueFilepath(), \sprintf('%s;', $this->getBundleName()));
     }
 
     public function unqueue()
     {
-        FileHelper::remove(AvailableBundles::QUEUE_FILE, \sprintf('%s;', $this->getBundleName()));
+        FileHelper::remove($this->getQueueFilepath(), \sprintf('%s;', $this->getBundleName()));
     }
 
     public function getBundleName(): ?string
@@ -98,5 +98,10 @@ class FOSUserInstaller implements InstallerInterface
     public function setBundleName(string $bundleName): void
     {
         $this->bundleName = $bundleName;
+    }
+
+    public function getQueueFilepath()
+    {
+        return \sprintf('%s/%s', $this->projectDir, AvailableBundles::QUEUE_FILE);
     }
 }
