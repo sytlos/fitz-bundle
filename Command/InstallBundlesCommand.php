@@ -2,6 +2,7 @@
 
 namespace HugoSoltys\FitzBundle\Command;
 
+use HugoSoltys\FitzBundle\Helper\FileHelper;
 use HugoSoltys\FitzBundle\Installer\InstallerInterface;
 use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Component\Console\Command\Command;
@@ -37,7 +38,7 @@ class InstallBundlesCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->title('FitzBundle install command');
 
-        $bundles = \explode(';', \file_get_contents(AvailableBundles::QUEUE_FILE));
+        $bundles = \explode(';', FileHelper::getContent(\sprintf('%s/vendor/hugosoltys/fitz-bundle/%s', $this->projectDir, AvailableBundles::QUEUE_FILE)));
 
         foreach ($bundles as $bundle) {
             if (empty($bundle)) {
