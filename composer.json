@@ -26,5 +26,8 @@
     "psr-4": { "HugoSoltys\\FitzBundle\\": "" }
   },
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "require-dev": {
+    "symfony/phpunit-bridge": "^4.3"
+  }
 }

@@ -2,7 +2,6 @@
 
 namespace HugoSoltys\FitzBundle\Model;
 
-use HugoSoltys\FitzBundle\Installer\DefaultInstaller;
 use HugoSoltys\FitzBundle\Installer\FOSUserInstaller;
 
 /**
