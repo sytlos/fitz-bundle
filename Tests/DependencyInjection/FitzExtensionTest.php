@@ -28,6 +28,26 @@ class FitzExtensionTest extends TestCase
         $this->assertEquals('/path/to/composer', (string) $param);
     }
 
+    public function testMissingComposerPathParam()
+    {
+        $container = $this->load([[]]);
+
+        $this->assertTrue($container->hasParameter('fitz.composer_path'));
+        $param = $container->getParameter('fitz.composer_path');
+
+        $this->assertEquals('/usr/local/bin/composer', (string) $param);
+    }
+
+    public function testHasServices()
+    {
+        $container = $this->load([[]]);
+
+        $this->assertTrue($container->hasDefinition('fitz.default_installer'));
+        $this->assertTrue($container->hasDefinition('fitz.fos_user_installer'));
+        $this->assertTrue($container->hasDefinition('fitz.install_command'));
+        $this->assertTrue($container->hasDefinition('fitz.controller'));
+    }
+
     private function load(array $configs)
     {
         $container = new ContainerBuilder();
