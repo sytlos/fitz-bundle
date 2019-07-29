@@ -45,4 +45,8 @@ Usage
 Go to this page `http://localhost/fitz/install`
 
 - Choose the bundles you want to install then press the `Install` button.
-- Open a terminal and run the following command `bin/console fitz:install`  
+- Open a terminal and run the following command `bin/console fitz:install`
+
+Contributing
+= 
+If you want to add a bundle to the catalog, please open [an issue](https://github.com/hugosoltys/fitz-bundle/issues).  
