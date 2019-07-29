@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('composer_path')->defaultValue('/usr/local/bin/composer')->end()
+                ->scalarNode('queue_file_path')->defaultValue('%kernel.project_dir%/vendor/hugosoltys/fitz-bundle')->end()
             ->end()
         ;
 

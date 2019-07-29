@@ -33,5 +33,10 @@ class FitzExtension extends Extension
             'fitz.composer_path',
             $config['composer_path'] ?? null
         );
+
+        $container->setParameter(
+            'fitz.queue_file_path',
+            $config['queue_file_path'] ?? null
+        );
     }
 }

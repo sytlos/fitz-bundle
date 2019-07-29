@@ -12,7 +12,7 @@ class DefaultInstallerTest extends TestCase
 {
     public function testIsInstalled()
     {
-        $installer = new DefaultInstaller('/usr/local/bin/composer', ['MyBundle' => 'MyBundle'], '/path/to/my/project');
+        $installer = new DefaultInstaller('/usr/local/bin/composer', ['MyBundle' => 'MyBundle'], '/path/to/my/project', '/var/www');
         $installer->setBundleName('MyBundle');
 
         $this->assertTrue($installer->isInstalled());
@@ -20,7 +20,7 @@ class DefaultInstallerTest extends TestCase
 
     public function testIsNotInstalled()
     {
-        $installer = new DefaultInstaller('/usr/local/bin/composer', [], '/path/to/my/project');
+        $installer = new DefaultInstaller('/usr/local/bin/composer', [], '/path/to/my/project', '/var/www');
         $installer->setBundleName('MyBundle');
 
         $this->assertFalse($installer->isInstalled());

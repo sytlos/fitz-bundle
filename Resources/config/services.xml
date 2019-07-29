@@ -8,11 +8,13 @@
             <argument>%fitz.composer_path%</argument>
             <argument>%kernel.bundles%</argument>
             <argument>%kernel.project_dir%</argument>
+            <argument>%fitz.queue_file_path%</argument>
         </service>
         <service id="fitz.fos_user_installer" class="HugoSoltys\FitzBundle\Installer\FOSUserInstaller" public="true">
             <argument>%fitz.composer_path%</argument>
             <argument>%kernel.bundles%</argument>
             <argument>%kernel.project_dir%</argument>
+            <argument>%fitz.queue_file_path%</argument>
         </service>
     </services>
 </container>

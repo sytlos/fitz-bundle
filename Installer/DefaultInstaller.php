@@ -22,6 +22,9 @@ class DefaultInstaller implements InstallerInterface
     private $projectDir;
 
     /** @var string */
+    private $queueFilePath;
+
+    /** @var string */
     private $bundleName;
 
     /**
@@ -29,12 +32,14 @@ class DefaultInstaller implements InstallerInterface
      * @param string $composerPath
      * @param array $bundles
      * @param string $projectDir
+     * @param string $queueFilePath
      */
-    public function __construct($composerPath, $bundles, $projectDir)
+    public function __construct($composerPath, $bundles, $projectDir, $queueFilePath)
     {
         $this->composerPath = $composerPath;
         $this->bundles = $bundles;
         $this->projectDir = $projectDir;
+        $this->queueFilePath = $queueFilePath;
     }
 
     /**
@@ -121,6 +126,6 @@ class DefaultInstaller implements InstallerInterface
      */
     public function getQueueFilepath()
     {
-        return \sprintf('%s/vendor/hugosoltys/fitz-bundle/%s', $this->projectDir, AvailableBundles::QUEUE_FILE);
+        return \sprintf('%s/%s', $this->queueFilePath, AvailableBundles::QUEUE_FILE);
     }
 }

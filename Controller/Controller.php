@@ -17,17 +17,17 @@ class Controller extends AbstractController
     private $bundles;
 
     /** @var string */
-    private $projectDir;
+    private $queueFilePath;
 
     /**
      * Controller constructor.
      * @param array $bundles
-     * @param string $projectDir
+     * @param string $queueFilePath
      */
-    public function __construct(array $bundles, string $projectDir)
+    public function __construct(array $bundles, string $queueFilePath)
     {
         $this->bundles = $bundles;
-        $this->projectDir = $projectDir;
+        $this->queueFilePath = $queueFilePath;
     }
 
     /**
@@ -60,7 +60,7 @@ class Controller extends AbstractController
         return $this->render('@Fitz/index.html.twig', [
             'installedBundles' => \array_keys($this->bundles),
             'availableBundles' => AvailableBundles::BUNDLES,
-            'installing' => FileHelper::getContent(\sprintf('%s/vendor/hugosoltys/fitz-bundle/%s', $this->projectDir, AvailableBundles::QUEUE_FILE)),
+            'installing' => FileHelper::getContent(\sprintf('%s/%s', $this->queueFilePath, AvailableBundles::QUEUE_FILE)),
         ]);
     }
 }

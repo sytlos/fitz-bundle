@@ -38,6 +38,7 @@ Configuring the bundle
 # config/packages/dev/fitz.yaml
 fitz:
   composer_path: '/path/to/composer'
+  queue_file_path: '%kernel.project_dir%'
 ```
 
 Usage

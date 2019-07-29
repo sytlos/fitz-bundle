@@ -27,19 +27,24 @@ class InstallBundlesCommand extends Command
     /** @var string */
     private $projectDir;
 
+    /** @var string */
+    private $queueFilePath;
+
     /**
      * InstallBundlesCommand constructor.
      * @param null|string $name
      * @param $composerPath
      * @param $bundles
      * @param $projectDir
+     * @param $queueFilePath
      */
-    public function __construct(?string $name = null, $composerPath, $bundles, $projectDir)
+    public function __construct(?string $name = null, $composerPath, $bundles, $projectDir, $queueFilePath)
     {
         parent::__construct($name);
         $this->composerPath = $composerPath;
         $this->bundles = $bundles;
         $this->projectDir = $projectDir;
+        $this->queueFilePath = $queueFilePath;
     }
 
     /**
@@ -54,7 +59,7 @@ class InstallBundlesCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->title('FitzBundle install command');
 
-        $bundles = \explode(';', FileHelper::getContent(\sprintf('%s/vendor/hugosoltys/fitz-bundle/%s', $this->projectDir, AvailableBundles::QUEUE_FILE)));
+        $bundles = \explode(';', FileHelper::getContent(\sprintf('%s/%s', $this->queueFilePath, AvailableBundles::QUEUE_FILE)));
 
         foreach ($bundles as $bundle) {
             if (empty($bundle)) {
@@ -63,7 +68,7 @@ class InstallBundlesCommand extends Command
 
             $installerClass = isset(AvailableBundles::BUNDLES[$bundle]['installer_class']) ? AvailableBundles::BUNDLES[$bundle]['installer_class'] : DefaultInstaller::class;
             /** @var InstallerInterface $installer */
-            $installer = new $installerClass($this->composerPath, $this->bundles, $this->projectDir);
+            $installer = new $installerClass($this->composerPath, $this->bundles, $this->projectDir, $this->queueFilePath);
             $installer->setBundleName($bundle);
 
             if (!$installer->isInstalled()) {
