@@ -2,7 +2,6 @@
 
 namespace HugoSoltys\FitzBundle\Installer;
 
-use HugoSoltys\FitzBundle\Helper\FileHelper;
 use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
@@ -10,55 +9,25 @@ use Symfony\Component\Process\Process;
 /**
  * @author Hugo Soltys <hugo.soltys@gmail.com>
  */
-class DefaultInstaller implements InstallerInterface
+class DefaultInstaller extends AbstractInstaller
 {
-    /** @var string */
-    private $composerPath;
-
-    /** @var array */
-    private $bundles;
-
-    /** @var string */
-    private $projectDir;
-
-    /** @var string */
-    private $queueFilePath;
-
-    /** @var string */
-    private $bundleName;
-
-    /**
-     * DefaultInstaller constructor.
-     * @param string $composerPath
-     * @param array $bundles
-     * @param string $projectDir
-     * @param string $queueFilePath
-     */
-    public function __construct($composerPath, $bundles, $projectDir, $queueFilePath)
-    {
-        $this->composerPath = $composerPath;
-        $this->bundles = $bundles;
-        $this->projectDir = $projectDir;
-        $this->queueFilePath = $queueFilePath;
-    }
-
     /**
      * @throws \Exception
      */
     public function install()
     {
-        if (!\file_exists($this->composerPath)) {
-            throw new \Exception(\sprintf("Composer not found at path : %s", $this->composerPath));
+        if (!\file_exists($this->getComposerPath())) {
+            throw new \Exception(\sprintf("Composer not found at path : %s", $this->getComposerPath()));
         }
 
-        if (!\is_executable($this->composerPath)) {
-            throw new \Exception(\sprintf("The %s file is not executable", $this->composerPath));
+        if (!\is_executable($this->getComposerPath())) {
+            throw new \Exception(\sprintf("The %s file is not executable", $this->getComposerPath()));
         }
 
         $bundleInfo = AvailableBundles::BUNDLES[$this->getBundleName()];
 
         $packages = $bundleInfo['composer'];
-        $command = \array_merge([$this->composerPath, 'require'], $packages);
+        $command = \array_merge([$this->getComposerPath(), 'require'], $packages);
 
         $process = new Process($command);
         $process->run();
@@ -68,64 +37,5 @@ class DefaultInstaller implements InstallerInterface
         }
 
         $this->unqueue();
-    }
-
-    public function configure()
-    {
-        return;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isInstalled()
-    {
-        return \in_array($this->getBundleName(), \array_keys($this->bundles));
-    }
-
-    /**
-     * @return bool
-     * @throws \Exception
-     */
-    public function isQueued()
-    {
-        return \file_exists($this->getQueueFilepath()) && FileHelper::contains($this->getQueueFilepath(), $this->getBundleName());
-    }
-
-    public function queue()
-    {
-        FileHelper::append($this->getQueueFilepath(), \sprintf('%s;', $this->getBundleName()));
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function unqueue()
-    {
-        FileHelper::remove($this->getQueueFilepath(), \sprintf('%s;', $this->getBundleName()));
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getBundleName(): ?string
-    {
-        return $this->bundleName;
-    }
-
-    /**
-     * @param string $bundleName
-     */
-    public function setBundleName(string $bundleName): void
-    {
-        $this->bundleName = $bundleName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getQueueFilepath()
-    {
-        return \sprintf('%s/%s', $this->queueFilePath, AvailableBundles::QUEUE_FILE);
     }
 }

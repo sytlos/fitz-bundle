@@ -10,55 +10,25 @@ use Symfony\Component\Process\Process;
 /**
  * @author Hugo Soltys <hugo.soltys@gmail.com>
  */
-class FOSUserInstaller implements InstallerInterface
+class FOSUserInstaller extends AbstractInstaller
 {
-    /** @var string */
-    private $composerPath;
-
-    /** @var array */
-    private $bundles;
-
-    /** @var string */
-    private $projectDir;
-
-    /** @var string */
-    private $queueFilePath;
-
-    /** @var string */
-    private $bundleName;
-
-    /**
-     * FOSUserInstaller constructor.
-     * @param string $composerPath
-     * @param array $bundles
-     * @param string $projectDir
-     * @param string $queueFilePath
-     */
-    public function __construct($composerPath, $bundles, $projectDir, $queueFilePath)
-    {
-        $this->composerPath = $composerPath;
-        $this->bundles = $bundles;
-        $this->projectDir = $projectDir;
-        $this->queueFilePath = $queueFilePath;
-    }
-
     /**
      * @throws \Exception
      */
     public function install()
     {
-        if (!\file_exists($this->composerPath)) {
-            throw new \Exception(\sprintf("Composer not found at path : %s", $this->composerPath));
+        if (!\file_exists($this->getComposerPath())) {
+            throw new \Exception(\sprintf("Composer not found at path : %s", $this->getComposerPath()));
         }
 
-        if (!\is_executable($this->composerPath)) {
-            throw new \Exception(\sprintf("The %s file is not executable", $this->composerPath));
+        if (!\is_executable($this->getComposerPath())) {
+            throw new \Exception(\sprintf("The %s file is not executable", $this->getComposerPath()));
         }
 
         $bundleInfo = AvailableBundles::BUNDLES[$this->getBundleName()];
 
         $packages = $bundleInfo['composer'];
-        $command = \array_merge([$this->composerPath, 'require'], $packages);
+        $command = \array_merge([$this->getComposerPath(), 'require'], $packages);
 
         $process = new Process($command);
         $process->run();
@@ -76,68 +46,17 @@ class FOSUserInstaller implements InstallerInterface
      */
     public function configure()
     {
-        $configFile = \sprintf('%s/config/packages/fos_user.yaml', $this->projectDir);
+        $configFile = \sprintf('%s/config/packages/fos_user.yaml', $this->getProjectDir());
 
         if (!\file_exists($configFile)) {
             $defaultConfigFile = \sprintf('%s/../Resources/default_config/fos_user.yaml', __DIR__);
             FileHelper::copy($defaultConfigFile, $configFile);
         }
 
-        $frameworkFile = \sprintf('%s/config/packages/framework.yaml', $this->projectDir);
+        $frameworkFile = \sprintf('%s/config/packages/framework.yaml', $this->getProjectDir());
         if (\file_exists($frameworkFile) && !FileHelper::contains($frameworkFile, 'templating')) {
             $templatingConfig = \file_get_contents(\sprintf('%s/../Resources/default_config/framework.yaml', __DIR__));
             FileHelper::append($frameworkFile, $templatingConfig);
         }
-    }
-
-    /**
-     * @return bool
-     */
-    public function isInstalled()
-    {
-        return \array_key_exists($this->getBundleName(), \array_keys($this->bundles));
-    }
-
-    /**
-     * @return bool
-     * @throws \Exception
-     */
-    public function isQueued()
-    {
-        return \file_exists($this->getQueueFilepath()) && FileHelper::contains($this->getQueueFilepath(), $this->getBundleName());
-    }
-
-    public function queue()
-    {
-        FileHelper::append($this->getQueueFilepath(), \sprintf('%s;', $this->getBundleName()));
-    }
-
-    public function unqueue()
-    {
-        FileHelper::remove($this->getQueueFilepath(), \sprintf('%s;', $this->getBundleName()));
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getBundleName(): ?string
-    {
-        return $this->bundleName;
-    }
-
-    /**
-     * @param string $bundleName
-     */
-    public function setBundleName(string $bundleName): void
-    {
-        $this->bundleName = $bundleName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getQueueFilepath()
-    {
-        return \sprintf('%s/%s', $this->queueFilePath, AvailableBundles::QUEUE_FILE);
     }
 }
