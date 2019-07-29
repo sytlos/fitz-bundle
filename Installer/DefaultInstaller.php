@@ -75,7 +75,7 @@ class DefaultInstaller implements InstallerInterface
      */
     public function isInstalled()
     {
-        return \array_key_exists($this->getBundleName(), \array_keys($this->bundles));
+        return \in_array($this->getBundleName(), \array_keys($this->bundles));
     }
 
     /**
