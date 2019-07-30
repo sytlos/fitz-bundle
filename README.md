@@ -1,7 +1,7 @@
 FitzBundle
 =
 
-Browse and install all the bundles you need in your [Symfony](http://symfony.com) application
+Browse and install all the bundles you need in your [Symfony](https://symfony.com) application
 in a few seconds.
 
 Installation
