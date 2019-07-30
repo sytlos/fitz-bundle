@@ -3,8 +3,8 @@
 namespace HugoSoltys\FitzBundle\Command;
 
 use HugoSoltys\FitzBundle\Helper\FileHelper;
+use HugoSoltys\FitzBundle\Installer\AbstractInstaller;
 use HugoSoltys\FitzBundle\Installer\DefaultInstaller;
-use HugoSoltys\FitzBundle\Installer\InstallerInterface;
 use HugoSoltys\FitzBundle\Model\AvailableBundles;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -59,7 +59,14 @@ class InstallBundlesCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->title('FitzBundle install command');
 
-        $bundles = \explode(';', FileHelper::getContent(\sprintf('%s/%s', $this->queueFilePath, AvailableBundles::QUEUE_FILE)));
+        $content = FileHelper::getContent(\sprintf('%s/%s', $this->queueFilePath, AvailableBundles::QUEUE_FILE));
+
+        if (empty($content)) {
+            $io->error('There is no bundle to install. Go to http://localhost/fitz/install to select the bundles you want to install.');
+            return;
+        }
+
+        $bundles = \explode(';', $content);
 
         foreach ($bundles as $bundle) {
             if (empty($bundle)) {
@@ -67,7 +74,7 @@ class InstallBundlesCommand extends Command
             }
 
             $installerClass = isset(AvailableBundles::BUNDLES[$bundle]['installer_class']) ? AvailableBundles::BUNDLES[$bundle]['installer_class'] : DefaultInstaller::class;
-            /** @var InstallerInterface $installer */
+            /** @var AbstractInstaller $installer */
             $installer = new $installerClass($this->composerPath, $this->bundles, $this->projectDir, $this->queueFilePath);
             $installer->setBundleName($bundle);
 

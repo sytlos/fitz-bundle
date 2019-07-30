@@ -69,12 +69,12 @@ class FileHelper
 
     /**
      * @param string $filename
-     * @return array|bool|string
+     * @return string
      */
     public static function getContent($filename)
     {
         if (!\file_exists($filename)) {
-            return [];
+            return '';
         }
 
         return \file_get_contents($filename);
