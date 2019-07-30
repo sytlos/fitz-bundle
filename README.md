@@ -1,7 +1,7 @@
 FitzBundle
 =
 
-Browse and install all the bundles you need in your Symfony application
+Browse and install all the bundles you need in your [Symfony](http://symfony.com) application
 in a few seconds.
 
 Installation
@@ -38,7 +38,7 @@ Configuring the bundle
 # config/packages/dev/fitz.yaml
 fitz:
   composer_path: '/path/to/composer'
-  queue_file_path: '%kernel.project_dir%'
+  queue_file_path: '%kernel.project_dir%/vendor/hugosoltys/fitz-bundle'
 ```
 
 Usage
@@ -50,4 +50,4 @@ Go to this page `http://localhost/fitz/install`
 
 Contributing
 = 
-If you want to add a bundle to the catalog, please open [an issue](https://github.com/hugosoltys/fitz-bundle/issues).  
+If you want to add a bundle to the catalog, feel free to submit a [pull request](https://github.com/hugosoltys/fitz-bundle/pulls).  
