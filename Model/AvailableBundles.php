@@ -149,6 +149,11 @@ class AvailableBundles
             'documentation' => 'https://github.com/liip/LiipImagineBundle',
             'composer_name' => 'liip/imagine-bundle',
         ],
+        'VichUploaderBundle' => [
+            'composer' => ['vich/uploader-bundle'],
+            'documentation' => 'https://github.com/dustin10/VichUploaderBundle/blob/master/Resources/doc/index.md',
+            'composer_name' => 'vich/uploader-bundle',
+        ],
         'IvoryCKEditorBundle' => [
             'composer' => ['egeloen/ckeditor-bundle'],
             'documentation' => 'https://symfony.com/doc/master/bundles/FOSCKEditorBundle/index.html',
