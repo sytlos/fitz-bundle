@@ -26,6 +26,11 @@ return [
 
 Configuration
 =
+Allow the automation of Composer packages configuration via Symfony Flex with the following command.
+```bash
+composer config extra.symfony.allow-contrib true
+```
+
 Import the bundle routing
 ```yaml
 # config/routes/dev/fitz.yaml

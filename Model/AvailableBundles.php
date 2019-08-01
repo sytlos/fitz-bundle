@@ -54,6 +54,16 @@ class AvailableBundles
             'installer_class' => FOSUserInstaller::class,
             'composer_name' => 'friendsofsymfony/user-bundle',
         ],
+        'FOSElasticaBundle' => [
+            'composer' => ['friendsofsymfony/elastica-bundle'],
+            'documentation' => 'https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md',
+            'composer_name' => 'friendsofsymfony/elastica-bundle',
+        ],
+        'FOSRestBundle' => [
+            'composer' => ['friendsofsymfony/rest-bundle'],
+            'documentation' => 'https://symfony.com/doc/master/bundles/FOSRestBundle/index.html',
+            'composer_name' => 'friendsofsymfony/rest-bundle',
+        ],
         'EasyAdminBundle' => [
             'composer' => ['admin'],
             'documentation' => 'https://symfony.com/doc/master/bundles/EasyAdminBundle/index.html',
@@ -113,6 +123,81 @@ class AvailableBundles
             'composer' => ['willdurand/js-translation-bundle'],
             'documentation' => 'https://github.com/willdurand/BazingaJsTranslationBundle/blob/master/Resources/doc/index.md',
             'composer_name' => 'willdurand/js-translation-bundle',
+        ],
+        'HWIOAuthBundle' => [
+            'composer' => ['hwi/oauth-bundle'],
+            'documentation' => 'https://github.com/hwi/HWIOAuthBundle/blob/master/Resources/doc/index.md',
+            'composer_name' => 'hwi/oauth-bundle',
+        ],
+        'JMSSerializerBundle' => [
+            'composer' => ['jms/serializer-bundle'],
+            'documentation' => 'http://jmsyst.com/bundles/JMSSerializerBundle',
+            'composer_name' => 'jms/serializer-bundle',
+        ],
+        'DoctrineMongoDBBundle' => [
+            'composer' => ['doctrine/mongodb-odm-bundle'],
+            'documentation' => 'https://symfony.com/doc/current/bundles/DoctrineMongoDBBundle/index.html',
+            'composer_name' => 'doctrine/mongodb-odm-bundle',
+        ],
+        'DoctrinePHPCRBundle' => [
+            'composer' => ['doctrine/phpcr-bundle'],
+            'documentation' => 'https://www.doctrine-project.org/projects/doctrine-phpcr-odm/en/latest/',
+            'composer_name' => 'doctrine/phpcr-bundle',
+        ],
+        'LiipImagineBundle' => [
+            'composer' => ['liip/imagine-bundle'],
+            'documentation' => 'https://github.com/liip/LiipImagineBundle',
+            'composer_name' => 'liip/imagine-bundle',
+        ],
+        'IvoryCKEditorBundle' => [
+            'composer' => ['egeloen/ckeditor-bundle'],
+            'documentation' => 'https://symfony.com/doc/master/bundles/FOSCKEditorBundle/index.html',
+            'composer_name' => 'egeloen/ckeditor-bundle',
+        ],
+        'OldSoundRabbitMqBundle' => [
+            'composer' => ['php-amqplib/rabbitmq-bundle'],
+            'documentation' => 'https://github.com/php-amqplib/RabbitMqBundle',
+            'composer_name' => 'php-amqplib/rabbitmq-bundle',
+        ],
+        'KnpSnappyBundle' => [
+            'composer' => ['knplabs/knp-snappy-bundle'],
+            'documentation' => 'https://github.com/KnpLabs/KnpSnappyBundle',
+            'composer_name' => 'knplabs/knp-snappy-bundle',
+        ],
+        'CacheAdapterBundle' => [
+            'composer' => ['cache/adapter-bundle'],
+            'documentation' => 'http://www.php-cache.com/en/latest/symfony/adapter-bundle/',
+            'composer_name' => 'cache/adapter-bundle',
+        ],
+        'CacheBundle' => [
+            'composer' => ['cache/cache-bundle'],
+            'documentation' => 'http://www.php-cache.com/en/latest/symfony/cache-bundle/',
+            'composer_name' => 'cache/cache-bundle',
+        ],
+        'EightPointsGuzzleBundle' => [
+            'composer' => ['eightpoints/guzzle-bundle'],
+            'documentation' => 'https://github.com/8p/EightPointsGuzzleBundle',
+            'composer_name' => 'eightpoints/guzzle-bundle',
+        ],
+        'EkoFeedBundle' => [
+            'composer' => ['eko/feedbundle'],
+            'documentation' => 'https://github.com/eko/FeedBundle',
+            'composer_name' => 'eko/feedbundle',
+        ],
+        'HttplugBundle' => [
+            'composer' => ['php-http/httplug-bundle'],
+            'documentation' => 'http://docs.php-http.org/en/latest/integrations/symfony-bundle.html',
+            'composer_name' => 'php-http/httplug-bundle',
+        ],
+        'KnpUOAuth2ClientBundle' => [
+            'composer' => ['knpuniversity/oauth2-client-bundle'],
+            'documentation' => 'https://github.com/knpuniversity/oauth2-client-bundle',
+            'composer_name' => 'knpuniversity/oauth2-client-bundle',
+        ],
+        'AlgoliaSearchBundle' => [
+            'composer' => ['algolia/search-bundle'],
+            'documentation' => 'https://github.com/algolia/search-bundle',
+            'composer_name' => 'algolia/search-bundle',
         ],
     ];
 }
