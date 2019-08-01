@@ -55,4 +55,9 @@ Go to this page `http://localhost/fitz/install`
 
 Contributing
 = 
-If you want to add a bundle to the catalog, feel free to submit a [pull request](https://github.com/hugosoltys/fitz-bundle/pulls).  
+If you want to add a bundle to the catalog, feel free to submit a [pull request](https://github.com/hugosoltys/fitz-bundle/pulls).
+
+Troubleshooting
+=
+If you choose to install many bundles at once, you may 
+encounter `memory limit` issues. If that is the case, please have a look [here](https://getcomposer.org/doc/articles/troubleshooting.md#memory-limit-errors).  
