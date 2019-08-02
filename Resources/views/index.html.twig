@@ -1,5 +1,29 @@
 {% extends '@Fitz/layout.html.twig' %}
 
+{% block styles %}
+    <style>
+        #welcome h1 span { display: block; font-size: 75%; }
+        #comment p { margin-bottom: 0; }
+        .col { width: 239px; display: block; float: left; margin-right: 5px; margin-bottom: 5px; padding: 10px 5px; background: rgba(91,192,222,0.2); min-height: 100px; border-left: 2px solid #5bc0de;}
+        .col.nomargin {margin-right: 0;}
+        .clear {clear: both;}
+        .doclink {display: block; padding-left: 20px; font-size: 13px;}
+        .composername {display: block; padding-left: 20px; font-size: 13px;}
+        input[type="submit"] {font-size: 20px;background: #5bc0de;color: white;border-radius: 3px;padding: 10px 15px;outline: none;}
+        .installed {color: #5cb85c; margin: 10px 0 0 0; padding-left: 20px; font-size: 13px;}
+        .installing {color: #f0ad4e;  margin: 10px 0 0 0; padding-left: 20px; font-size: 13px;}
+        .ready {color: #5bc0de;  margin: 10px 0 0 0; padding-left: 20px; font-size: 13px;}
+        label {font-size: 13px; margin-bottom: 10px; display: block;}
+        #searchform {margin: 0 0 10px 0;}
+        #submitform {position: fixed;height: 70px;background: white;width: 800px;bottom: 0;left: 50%;transform: translateX(-50%);text-align: center;padding-top: 30px;border-top: 1px solid #5bc0de;}
+        form {position: relative; margin-bottom: 100px;}
+        #search {padding: 10px 5px; outline: none; width: 750px; font-size: 20px;}
+        .hide {display: none;}
+        .noselect {-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;}
+        #next { min-height: 800px; }
+    </style>
+{% endblock %}
+
 {% block body %}
     <div id="welcome">
         <h1><span>Welcome to</span> FitzBundle</h1>
@@ -7,21 +31,20 @@
 
     <div id="next">
         <form method="post" action="{{ path('hugo_soltys_fitz_install') }}" name="bundles">
-            <h2>Pick the bundles you need in your application</h2>
-            <p>
-                After clicking the Install button, please run the following command in your terminal.
-            </p>
-            <p>
-                <code>bin/console fitz:install</code>
-            </p>
+            <ol>
+                <li>
+                    Choose the bundles you need in your application in the below list
+                </li>
+                <li>
+                    Click on the <code>SUBMIT</code> button
+                </li>
+                <li>
+                    Run the <code>bin/console fitz:install</code> command in your terminal
+                </li>
+            </ol>
             <div id="searchform">
                 <input id="search" name="search" type="text" placeholder="Search a bundle">
             </div>
-            <div id="submitform">
-                <input type="submit" value="Install">
-            </div>
-            <div class="clear"></div>
-
             <div id="hideinput">
                 <label for="hideinstalled" class="noselect">
                     <input type="checkbox" name=hideinstalled" id="hideinstalled">
@@ -30,7 +53,7 @@
             </div>
 
             {% for bundle, infos in availableBundles %}
-                <div class="col">
+                <div class="col {% if loop.index % 3 == 0 %}nomargin{% endif %}">
                     <label for="{{ bundle }}" class="noselect">
                         <input type="checkbox" name="bundles[{{ bundle }}]" id="{{ bundle }}" value="{{ bundle }}" {% if bundle in installedBundles or bundle in installing %}checked disabled{% endif %}>
                         {{ bundle }}
@@ -59,6 +82,9 @@
                 </div>
             {% endfor %}
             <div class="clear"></div>
+            <div id="submitform">
+                <input type="submit" value="SUBMIT">
+            </div>
         </form>
     </div>
 {% endblock %}
