@@ -45,7 +45,12 @@
             });
         });
 
+        toggleInstalled();
         hideinput.addEventListener('change', function () {
+            toggleInstalled();
+        });
+
+        function toggleInstalled() {
             bundles.forEach(function (bundle) {
                 var installed = bundle.querySelector('.installed');
                 if (hideinput.checked) {
@@ -58,6 +63,6 @@
                     }
                 }
             });
-        });
+        }
     </script>
 </html>

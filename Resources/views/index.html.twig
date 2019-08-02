@@ -20,6 +20,7 @@
         .hide {display: none;}
         .noselect {-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;}
         #next { min-height: 800px; }
+        .alert {color: #856404;background-color: #fff3cd;border-color: #ffeeba;position: relative;padding: .75rem 1.25rem;margin-bottom: 1rem;border: 1px solid transparent;border-radius: .25rem;font-size: 15px;}
     </style>
 {% endblock %}
 
@@ -41,12 +42,18 @@
                     Run the <code>bin/console fitz:install</code> command in your terminal
                 </li>
             </ol>
+            {% if installing|length > 0 %}
+                <div class="alert alert-warning" role="alert">
+                    You have <strong>{{ installing|length }}</strong> bundles ready to install.<br>
+                    Please run <code>bin/console fitz:install</code> command in your terminal.
+                </div>
+            {% endif %}
             <div id="searchform">
                 <input id="search" name="search" type="text" placeholder="Search a bundle">
             </div>
             <div id="hideinput">
                 <label for="hideinstalled" class="noselect">
-                    <input type="checkbox" name=hideinstalled" id="hideinstalled">
+                    <input type="checkbox" name=hideinstalled" id="hideinstalled" checked="checked">
                     Hide installed bundles
                 </label>
             </div>

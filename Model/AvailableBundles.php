@@ -124,25 +124,10 @@ class AvailableBundles
             'documentation' => 'https://github.com/willdurand/BazingaJsTranslationBundle/blob/master/Resources/doc/index.md',
             'composer_name' => 'willdurand/js-translation-bundle',
         ],
-        'HWIOAuthBundle' => [
-            'composer' => ['hwi/oauth-bundle'],
-            'documentation' => 'https://github.com/hwi/HWIOAuthBundle/blob/master/Resources/doc/index.md',
-            'composer_name' => 'hwi/oauth-bundle',
-        ],
         'JMSSerializerBundle' => [
             'composer' => ['jms/serializer-bundle'],
             'documentation' => 'http://jmsyst.com/bundles/JMSSerializerBundle',
             'composer_name' => 'jms/serializer-bundle',
-        ],
-        'DoctrineMongoDBBundle' => [
-            'composer' => ['doctrine/mongodb-odm-bundle'],
-            'documentation' => 'https://symfony.com/doc/current/bundles/DoctrineMongoDBBundle/index.html',
-            'composer_name' => 'doctrine/mongodb-odm-bundle',
-        ],
-        'DoctrinePHPCRBundle' => [
-            'composer' => ['doctrine/phpcr-bundle'],
-            'documentation' => 'https://www.doctrine-project.org/projects/doctrine-phpcr-odm/en/latest/',
-            'composer_name' => 'doctrine/phpcr-bundle',
         ],
         'LiipImagineBundle' => [
             'composer' => ['liip/imagine-bundle'],

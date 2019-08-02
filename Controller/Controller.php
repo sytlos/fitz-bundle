@@ -57,10 +57,16 @@ class Controller extends AbstractController
             }
         }
 
+        $installing = [];
+        $queueContent = FileHelper::getContent(\sprintf('%s/%s', $this->queueFilePath, AvailableBundles::QUEUE_FILE));
+        if (\strlen($queueContent) > 0) {
+            $installing = \array_filter(\explode(';', $queueContent));
+        }
+
         return $this->render('@Fitz/index.html.twig', [
             'installedBundles' => \array_keys($this->bundles),
             'availableBundles' => AvailableBundles::BUNDLES,
-            'installing' => FileHelper::getContent(\sprintf('%s/%s', $this->queueFilePath, AvailableBundles::QUEUE_FILE)),
+            'installing' => $installing,
         ]);
     }
 }
