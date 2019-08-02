@@ -60,7 +60,7 @@ class AvailableBundles
             'composer_name' => 'friendsofsymfony/elastica-bundle',
         ],
         'FOSRestBundle' => [
-            'composer' => ['friendsofsymfony/rest-bundle'],
+            'composer' => ['symfony/serializer', 'friendsofsymfony/rest-bundle'],
             'documentation' => 'https://symfony.com/doc/master/bundles/FOSRestBundle/index.html',
             'composer_name' => 'friendsofsymfony/rest-bundle',
         ],
@@ -154,11 +154,6 @@ class AvailableBundles
             'documentation' => 'https://github.com/dustin10/VichUploaderBundle/blob/master/Resources/doc/index.md',
             'composer_name' => 'vich/uploader-bundle',
         ],
-        'IvoryCKEditorBundle' => [
-            'composer' => ['egeloen/ckeditor-bundle'],
-            'documentation' => 'https://symfony.com/doc/master/bundles/FOSCKEditorBundle/index.html',
-            'composer_name' => 'egeloen/ckeditor-bundle',
-        ],
         'OldSoundRabbitMqBundle' => [
             'composer' => ['php-amqplib/rabbitmq-bundle'],
             'documentation' => 'https://github.com/php-amqplib/RabbitMqBundle',
@@ -188,11 +183,6 @@ class AvailableBundles
             'composer' => ['eko/feedbundle'],
             'documentation' => 'https://github.com/eko/FeedBundle',
             'composer_name' => 'eko/feedbundle',
-        ],
-        'HttplugBundle' => [
-            'composer' => ['php-http/httplug-bundle'],
-            'documentation' => 'http://docs.php-http.org/en/latest/integrations/symfony-bundle.html',
-            'composer_name' => 'php-http/httplug-bundle',
         ],
         'KnpUOAuth2ClientBundle' => [
             'composer' => ['knpuniversity/oauth2-client-bundle'],

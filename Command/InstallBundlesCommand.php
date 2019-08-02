@@ -10,8 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * @author Hugo Soltys <hugo.soltys@gmail.com>
@@ -19,6 +18,9 @@ use Symfony\Component\Process\Process;
 class InstallBundlesCommand extends Command
 {
     protected static $defaultName = 'fitz:install';
+
+    /** @var EventDispatcher */
+    private $eventDispatcher;
 
     /** @var string */
     private $composerPath;
@@ -35,14 +37,16 @@ class InstallBundlesCommand extends Command
     /**
      * InstallBundlesCommand constructor.
      * @param null|string $name
+     * @param $eventDispatcher
      * @param $composerPath
      * @param $bundles
      * @param $projectDir
      * @param $queueFilePath
      */
-    public function __construct(?string $name = null, $composerPath, $bundles, $projectDir, $queueFilePath)
+    public function __construct(?string $name = null, $eventDispatcher, $composerPath, $bundles, $projectDir, $queueFilePath)
     {
         parent::__construct($name);
+        $this->eventDispatcher = $eventDispatcher;
         $this->composerPath = $composerPath;
         $this->bundles = $bundles;
         $this->projectDir = $projectDir;
@@ -57,6 +61,12 @@ class InstallBundlesCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         ini_set('memory_limit', -1);
+
+        $listeners = $this->eventDispatcher->getListeners('kernel.terminate');
+        foreach ($listeners as $listener) {
+            $className = $listener[0];
+            $this->eventDispatcher->removeListener('kernel.terminate', $className);
+        }
 
         $io = new SymfonyStyle($input, $output);
         $io->title('FitzBundle install command');
@@ -87,16 +97,6 @@ class InstallBundlesCommand extends Command
 
                 $io->success(\sprintf('%s installed successfully', $bundle));
             }
-        }
-
-        $io->section('Clearing cache...');
-
-        $command = [\sprintf('%/bin/console', $this->projectDir), 'cache:clear'];
-        $process = new Process($command);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
         }
 
         $io->success('All bundles are now installed. Enjoy !');
