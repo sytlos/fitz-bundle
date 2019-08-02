@@ -10,6 +10,8 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 /**
  * @author Hugo Soltys <hugo.soltys@gmail.com>
@@ -85,6 +87,16 @@ class InstallBundlesCommand extends Command
 
                 $io->success(\sprintf('%s installed successfully', $bundle));
             }
+        }
+
+        $io->section('Clearing cache...');
+
+        $command = [\sprintf('%/bin/console', $this->projectDir), 'cache:clear'];
+        $process = new Process($command);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
         }
 
         $io->success('All bundles are now installed. Enjoy !');
