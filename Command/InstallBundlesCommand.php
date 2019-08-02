@@ -62,11 +62,7 @@ class InstallBundlesCommand extends Command
     {
         ini_set('memory_limit', -1);
 
-        $listeners = $this->eventDispatcher->getListeners('kernel.terminate');
-        foreach ($listeners as $listener) {
-            $className = $listener[0];
-            $this->eventDispatcher->removeListener('kernel.terminate', $className);
-        }
+        $this->disableListeners();
 
         $io = new SymfonyStyle($input, $output);
         $io->title('FitzBundle install command');
@@ -100,5 +96,20 @@ class InstallBundlesCommand extends Command
         }
 
         $io->success('All bundles are now installed. Enjoy !');
+    }
+
+    protected function disableListeners()
+    {
+        $kernelTerminateListeners = $this->eventDispatcher->getListeners('kernel.terminate');
+        foreach ($kernelTerminateListeners as $listener) {
+            $className = $listener[0];
+            $this->eventDispatcher->removeListener('kernel.terminate', $className);
+        }
+
+        $consoleTerminateListeners = $this->eventDispatcher->getListeners('console.terminate');
+        foreach ($consoleTerminateListeners as $listener) {
+            $className = $listener[0];
+            $this->eventDispatcher->removeListener('console.terminate', $className);
+        }
     }
 }
