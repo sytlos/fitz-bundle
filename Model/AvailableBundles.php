@@ -60,7 +60,7 @@ class AvailableBundles
             'composer_name' => 'friendsofsymfony/elastica-bundle',
         ],
         'FOSRestBundle' => [
-            'composer' => ['symfony/serializer', 'friendsofsymfony/rest-bundle'],
+            'composer' => ['doctrine/annotations', 'symfony/serializer', 'friendsofsymfony/rest-bundle'],
             'documentation' => 'https://symfony.com/doc/master/bundles/FOSRestBundle/index.html',
             'composer_name' => 'friendsofsymfony/rest-bundle',
         ],
