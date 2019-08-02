@@ -129,6 +129,31 @@ class AvailableBundles
             'documentation' => 'http://jmsyst.com/bundles/JMSSerializerBundle',
             'composer_name' => 'jms/serializer-bundle',
         ],
+        'SonataAdminBundle' => [
+            'composer' => ['sonata-project/admin-bundle'],
+            'documentation' => 'https://sonata-project.org/bundles/admin/3-x/doc/index.html',
+            'composer_name' => 'sonata-project/admin-bundle',
+        ],
+        'KnpPaginatorBundle' => [
+            'composer' => ['knplabs/knp-paginator-bundle'],
+            'documentation' => 'https://github.com/KnpLabs/KnpPaginatorBundle',
+            'composer_name' => 'knplabs/knp-paginator-bundle',
+        ],
+        'MopaBootstrapBundle' => [
+            'composer' => ['mopa/bootstrap-bundle'],
+            'documentation' => 'https://github.com/phiamo/MopaBootstrapBundle',
+            'composer_name' => 'mopa/bootstrap-bundle',
+        ],
+        'KnpGaufretteBundle' => [
+            'composer' => ['knplabs/knp-gaufrette-bundle'],
+            'documentation' => 'https://github.com/KnpLabs/KnpGaufretteBundle',
+            'composer_name' => 'knplabs/knp-gaufrette-bundle',
+        ],
+        'SncRedisBundle' => [
+            'composer' => ['snc/redis-bundle'],
+            'documentation' => 'https://github.com/snc/SncRedisBundle/blob/master/Resources/doc/index.md',
+            'composer_name' => 'snc/redis-bundle',
+        ],
         'LiipImagineBundle' => [
             'composer' => ['liip/imagine-bundle'],
             'documentation' => 'https://github.com/liip/LiipImagineBundle',
