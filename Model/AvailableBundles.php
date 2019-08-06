@@ -3,6 +3,7 @@
 namespace HugoSoltys\FitzBundle\Model;
 
 use HugoSoltys\FitzBundle\Installer\FOSUserInstaller;
+use HugoSoltys\FitzBundle\Installer\SncRedisInstaller;
 
 /**
  * @author Hugo Soltys <hugo.soltys@gmail.com>
@@ -150,8 +151,10 @@ class AvailableBundles
             'composer_name' => 'knplabs/knp-gaufrette-bundle',
         ],
         'SncRedisBundle' => [
-            'composer' => ['snc/redis-bundle'],
+            'composer' => ['predis/predis', 'snc/redis-bundle'],
             'documentation' => 'https://github.com/snc/SncRedisBundle/blob/master/Resources/doc/index.md',
+            'service' => 'fitz.snc_redis_installer',
+            'installer_class' => SncRedisInstaller::class,
             'composer_name' => 'snc/redis-bundle',
         ],
         'LiipImagineBundle' => [

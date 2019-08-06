@@ -10,7 +10,7 @@ use Symfony\Component\Process\Process;
 /**
  * @author Hugo Soltys <hugo.soltys@gmail.com>
  */
-class FOSUserInstaller extends AbstractInstaller
+class SncRedisInstaller extends AbstractInstaller
 {
     /**
      * @throws \Exception
@@ -46,15 +46,9 @@ class FOSUserInstaller extends AbstractInstaller
      */
     public function configure()
     {
-        $configFile = \sprintf('%s/config/packages/fos_user.yaml', $this->getProjectDir());
+        $configFile = \sprintf('%s/config/packages/snc_redis.yaml', $this->getProjectDir());
 
-        $defaultConfigFile = \sprintf('%s/../Resources/default_config/fos_user.yaml', __DIR__);
+        $defaultConfigFile = \sprintf('%s/../Resources/default_config/snc_redis.yaml', __DIR__);
         FileHelper::copy($defaultConfigFile, $configFile);
-
-        $frameworkFile = \sprintf('%s/config/packages/framework.yaml', $this->getProjectDir());
-        if (\file_exists($frameworkFile) && !FileHelper::contains($frameworkFile, 'templating')) {
-            $templatingConfig = \file_get_contents(\sprintf('%s/../Resources/default_config/framework.yaml', __DIR__));
-            FileHelper::append($frameworkFile, $templatingConfig);
-        }
     }
 }
