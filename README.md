@@ -33,14 +33,14 @@ composer config extra.symfony.allow-contrib true
 
 Import the bundle routing
 ```yaml
-# config/routes/dev/fitz.yaml
+# config/routes/dev/hugosoltys_fitz.yaml
 fitz:
   resource: "@FitzBundle/Resources/config/routing.xml"
 ```
 
 Configuring the bundle
 ```yaml
-# config/packages/dev/fitz.yaml
+# config/packages/dev/hugosoltys_fitz.yaml
 fitz:
   composer_path: '/path/to/composer'
   queue_file_path: '%kernel.project_dir%/vendor/hugosoltys/fitz-bundle'
